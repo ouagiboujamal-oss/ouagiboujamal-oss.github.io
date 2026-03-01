@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta name="monetag" content="13c120f9b2fa3bfb6f07aab7ec41938e">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="قصص رعب مخيفة - تجربة قراءة صوتية تفاعلية">
+    <meta name="theme-color" content="#1a0033">
+    <title>قصص الرعب - هالوين المرعب 🎃</title>
+    
+    <!-- ✅ Google AdSense - السكريبت الرئيسي -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6847506129570052"
+     crossorigin="anonymous"></script>
+    
+    <!-- ✅ Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #ff8c42;
+            --dark-purple: #1a0033;
+            --medium-purple: #2d1b4e;
+            --light-text: #e8e8e8;
+            --border-glow: rgba(255, 107, 53, 0.4);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-purple) 0%, var(--medium-purple) 50%, var(--dark-purple) 100%);
+            color: var(--light-text);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .halloween-decorations {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .pumpkin, .ghost, .bat, .spider, .skull {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.6;
+        }
+
+        .pumpkin { animation: float 6s ease-in-out infinite, rotate 8s linear infinite; }
+        .ghost { animation: float 5s ease-in-out infinite, ghostMove 10s ease-in-out infinite; }
+        .bat { animation: fly 4s ease-in-out infinite; }
+        .spider { animation: spiderDrop 8s ease-in-out infinite; }
+        .skull { animation: float 7s ease-in-out infinite, skullShake 2s ease-in-out infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fly {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-30px) translateY(-15px); }
+            75% { transform: translateX(30px) translateY(-15px); }
+        }
+
+        @keyframes ghostMove {
+            0%, 100% { transform: translateX(0); opacity: 0.6; }
+            50% { transform: translateX(-50px); opacity: 0.3; }
+        }
+
+        @keyframes spiderDrop {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(100px); }
+        }
+
+        @keyframes skullShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+
+        .login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-purple), var(--medium-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .login-screen.hidden { display: none; }
+
+        .login-container {
+            background: rgba(45, 27, 78, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 60px 50px;
+            border-radius: 25px;
+            border: 3px solid var(--primary-color);
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.5), 0 0 80px rgba(255, 107, 53, 0.3);
+            max-width: 450px;
+            width: 90%;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .login-container h1 {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 25px rgba(255, 107, 53, 0.9), 0 0 50px rgba(255, 107, 53, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .login-container p {
+            color: #c0c0c0;
+            margin-bottom: 35px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .login-container .subtitle {
+            color: var(--primary-color);
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        header {
+            background: rgba(26, 0, 51, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-bottom: 3px solid var(--primary-color);
+            box-shadow: 0 4px 20px var(--border-glow);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-icon {
+            font-size: 50px;
+            animation: pulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px var(--primary-color));
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: var(--primary-color);
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.8), 0 0 40px rgba(255, 107, 53, 0.4);
+            text-align: center;
+        }
+
+        .header-center {
+            text-align: center;
+        }
+
+        .desktop-welcome {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        .desktop-welcome strong {
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 107, 53, 0.15);
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 107, 53, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover {
+            background: rgba(255, 107, 53, 0.25);
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px var(--border-glow);
+        }
+
+        .user-profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 10px var(--border-glow);
+        }
+
+        .user-info { text-align: right; }
+
+        .user-info .name {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .user-info .email {
+            color: #b0b0b0;
+            font-size: 12px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--border-glow);
+        }
+
+        .logout-btn:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.7);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            font-size: 28px;
+            padding: 15px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            box-shadow: 0 4px 15px var(--border-glow);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover { transform: scale(1.15) rotate(90deg); }
+        
+        .menu-toggle.active {
+            background: linear-gradient(135deg, #f87171, #ef4444);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            backdrop-filter: blur(5px);
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 0;
+            min-height: calc(100vh - 90px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .sidebar {
+            background: rgba(26, 0, 51, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-left: 3px solid var(--border-glow);
+            overflow-y: auto;
+            position: sticky;
+            top: 90px;
+            height: calc(100vh - 90px);
+        }
+
+        .sidebar::-webkit-scrollbar { width: 10px; }
+        .sidebar::-webkit-scrollbar-track { background: rgba(255, 107, 53, 0.1); border-radius: 5px; }
+        .sidebar::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary-color), var(--secondary-color)); border-radius: 5px; }
+
+        .sidebar h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-glow);
+            padding-bottom: 15px;
+            font-size: 24px;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+        }
+
+        .sidebar-header {
+            display: none;
+        }
+
+        .mobile-user-info {
+            background: rgba(255, 107, 53, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid var(--border-glow);
+        }
+
+        .welcome-message {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .welcome-message strong {
+            color: var(--primary-color);
+            font-size: 18px;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .mobile-logout-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        }
+
+        .mobile-logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+        }
+
+        .story-list { list-style: none; }
+
+        .story-list li {
+            padding: 16px;
+            margin: 12px 0;
+            background: rgba(255, 107, 53, 0.1);
+            border-right: 4px solid var(--primary-color);
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            color: var(--light-text);
+            pointer-events: auto;
+            user-select: none;
+        }
+
+        .story-list li:hover {
+            background: rgba(255, 107, 53, 0.25);
+            transform: translateX(10px) scale(1.03);
+            box-shadow: 0 4px 15px var(--border-glow);
+        }
+
+        .story-list li:active {
+            transform: translateX(5px) scale(1.01);
+        }
+
+        .story-list li.active {
+            background: rgba(255, 107, 53, 0.35);
+            border-right: 6px solid var(--secondary-color);
+            font-weight: bold;
+            box-shadow: 0 4px 20px var(--border-glow);
+        }
+
+        .content-area {
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .ad-container {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            background: rgba(45, 27, 78, 0.4);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 107, 53, 0.2);
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(45, 27, 78, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 25px;
+            border: 2px solid var(--border-glow);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px var(--border-glow);
+        }
+
+        .story { display: none; }
+        .story.active { display: block; animation: fadeInUp 0.6s ease; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .story-title {
+            font-size: 40px;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 35px;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.6), 0 0 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .story-controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .story-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 17px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--border-glow);
+        }
+
+        .story-btn:hover:not(:disabled) {
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+        }
+
+        .story-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .voice-status {
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            background: rgba(255, 107, 53, 0.2);
+            border: 2px solid var(--border-glow);
+            transition: all 0.3s ease;
+        }
+
+        .voice-status.active { animation: statusPulse 1.5s ease-in-out infinite; }
+
+        @keyframes statusPulse {
+            0%, 100% { box-shadow: 0 0 10px var(--border-glow); }
+            50% { box-shadow: 0 0 25px rgba(255, 107, 53, 0.8); }
+        }
+
+        .story-text {
+            line-height: 2.3;
+            font-size: 19px;
+            text-align: justify;
+            color: var(--light-text);
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+            text-indent: 30px;
+        }
+
+        .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            height: 12px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            width: 0;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.7);
+        }
+
+        .story-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 107, 53, 0.2);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .content-area { padding: 20px 15px; }
+            .story-container { padding: 30px 20px; }
+            header { grid-template-columns: 1fr; padding: 15px; }
+            header h1 { font-size: 26px; }
+            .user-profile { display: none; }
+            .header-icon { display: none; }
+            .header-center .desktop-welcome { display: none; }
+            .menu-toggle { display: block; }
+            
+            .sidebar-header {
+                display: block !important;
+            }
+            
+            .sidebar {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 85%;
+                max-width: 350px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+                pointer-events: auto;
+                overflow-y: auto;
+                padding-top: 30px;
+            }
+            .sidebar.active { 
+                transform: translateX(0);
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+            }
+            .sidebar h2 {
+                margin-top: 10px;
+            }
+            .story-list li {
+                pointer-events: auto !important;
+                cursor: pointer !important;
+            }
+            .story-title { font-size: 28px; }
+            .story-text { font-size: 17px; line-height: 2.1; }
+            .story-controls { flex-direction: column; gap: 12px; }
+            .story-btn { width: 100%; padding: 16px; }
+            .story-navigation { flex-direction: column; }
+            .login-container { padding: 40px 30px; }
+            .login-container h1 { font-size: 38px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="halloween-decorations" aria-hidden="true">
+        <div class="pumpkin" style="top: 10%; right: 10%;">🎃</div>
+        <div class="ghost" style="top: 20%; right: 80%;">👻</div>
+        <div class="bat" style="top: 15%; right: 50%;">🦇</div>
+        <div class="spider" style="top: 5%; right: 30%;">🕷️</div>
+        <div class="skull" style="top: 25%; right: 70%;">💀</div>
+        <div class="pumpkin" style="top: 70%; right: 20%;">🎃</div>
+        <div class="ghost" style="top: 80%; right: 70%;">👻</div>
+        <div class="bat" style="top: 60%; right: 90%;">🦇</div>
+        <div class="spider" style="top: 75%; right: 40%;">🕷️</div>
+        <div class="skull" style="top: 85%; right: 15%;">💀</div>
+    </div>
+
+    <!-- ✅ شاشة تسجيل الدخول -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <h1>🎃 قصص الرعب 👻</h1>
+            <p class="subtitle">أهلاً بك في عالم الرعب والغموض</p>
+            <p>استعد لتجربة مرعبة لا تُنسى مع أفضل قصص الهالوين<br>
+            سجّل الدخول الآن لتبدأ رحلتك المخيفة</p>
+            
+            <!-- ✅ Google Sign-In بالرقم الحقيقي -->
+            <div id="g_id_onload"
+                 data-client_id="295699802302-t4l7rov5vo93g20fuphhbh4sj21dbgu1.apps.googleusercontent.com"
+                 data-context="signin"
+                 data-ux_mode="popup"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
+            </div>
+            
+            <!-- ✅ زر Google الرسمي الوحيد -->
+            <div id="g_id_signin" style="margin-top: 30px; display: flex; justify-content: center;"></div>
+            
+            <p style="margin-top: 25px; font-size: 13px; color: #888;">
+                بتسجيل الدخول، أنت توافق على شروط الخدمة وسياسة الخصوصية
+            </p>
+        </div>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <header id="header" style="display: none;">
+        <div class="header-icon" aria-hidden="true">🎃</div>
+        <div class="header-center">
+            <h1>قصص الرعب المرعبة 🌙</h1>
+            <div class="desktop-welcome">مرحباً بك يا <strong id="desktopUserName"></strong></div>
+        </div>
+        <div class="user-profile">
+            <img id="userImage" src="" alt="صورة المستخدم">
+            <div class="user-info">
+                <div class="name" id="userName"></div>
+                <div class="email" id="userEmail"></div>
+            </div>
+            <button class="logout-btn" onclick="logout()">🚪 خروج</button>
+        </div>
+    </header>
+
+    <div class="main-layout" id="mainLayout" style="display: none;">
+        <aside class="sidebar" id="sidebar" role="navigation" aria-label="قائمة القصص">
+            <div class="sidebar-header">
+                <div class="mobile-user-info">
+                    <div class="welcome-message">
+                        👋 مرحباً بك يا <strong id="mobileUserName"></strong>
+                    </div>
+                    <button class="mobile-logout-btn" onclick="logout()">🚪 تسجيل الخروج</button>
+                </div>
+            </div>
+            <h2>📚 قائمة القصص المرعبة</h2>
+            <ul class="story-list" id="storyList"></ul>
+        </aside>
+
+        <main class="content-area">
+            
+            <!-- ✅✅✅ الإعلان الأول - In-Article ✅✅✅ -->
+            <div class="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block; text-align:center;"
+                     data-ad-layout="in-article"
+                     data-ad-format="fluid"
+                     data-ad-client="ca-pub-6847506129570052"
+                     data-ad-slot="5037307165"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <div class="story-container">
+                <div class="progress-container" role="progressbar" aria-label="تقدم القراءة">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div id="storiesContainer"></div>
+            </div>
+
+            <!-- ✅✅✅ الإعلان الثاني - Banner ✅✅✅ -->
+            <div class="ad-container" style="margin-top: 30px;">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:728px;height:90px"
+                     data-ad-client="ca-pub-6847506129570052"
+                     data-ad-slot="2219572133"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            
+        </main>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let currentStory = 0;
+        let isReading = false;
+        let utterance = null;
+        let voices = [];
+
+        const stories = [
+            {id: 0, title: '🎃 الساعة الملعونة', text: 'في إحدى الليالي الباردة، اشترى محمد ساعة حائطية قديمة من متجر العتيقات. كانت الساعة جميلة بتصميمها العتيق، لكنها غريبة بطريقة ما. في الليلة الأولى، لاحظ محمد شيئاً غريباً. الساعة تتحرك بسرعة أسرع من المعتاد. عندما أصبحت الساعة الثالثة والثلاثين دقيقة صباحاً، سمع صوت خطوات غريبة في الممر. من هناك؟ صرخ محمد، لكن لا أحد رد عليه. في كل ليلة، عندما تصل الساعة إلى نفس الوقت، يسمع محمد نفس الأصوات المرعبة. وفي كل مرة، يشعر بوجود شيء بارد يقترب منه في الظلام. بعد أسبوع، اكتشف محمد الحقيقة المرعبة. السعر الذي دفعه للساعة كان نفس سعر حياة سابقة. والآن، الساعة تأخذ حياته، ثانية واحدة في كل مرة تدق فيها.'},
+            {id: 1, title: '👻 الفندق الخالي', text: 'حجزت سارة غرفة في فندق قديم بعيد عن المدينة. عندما وصلت، وجدت الفندق خالياً تماماً. لا موظفين، لا نزلاء آخرين. صعدت إلى غرفتها في الطابق الخامس. الممر كان طويلاً وهادئاً بشكل غريب. في منتصف الليل، سمعت سارة أصوات خطوات في الممر. فتحت الباب ببطء، لكن لم يكن هناك أحد. في الصباح، اكتشفت سارة أن الفندق مغلق منذ ثلاثين سنة بعد حادثة غريبة. والآن، هي جزء من تلك الليلة الملعونة.'},
+            {id: 2, title: '🌲 الغابة المظلمة', text: 'ذهب أحمد ورفاقه في رحلة تخييم إلى غابة بعيدة. في الليل، شعروا بأن شيئاً ما يراقبهم من الظلام. ظهرت ظلال غريبة حول النار. حاول الجميع الهروب، لكن الغابة التفت عليهم. لم ينجُ أحمد ورفاقه من الغابة. وإلى اليوم، الناس يسمعون أصوات تنادي من داخل الغابة.'},
+            {id: 3, title: '🪞 المرآة المسكونة', text: 'اشترت ليلى مرآة عتيقة من سوق التحف. في أول ليلة، رأت انعكاساً غريباً خلفها في المرآة. امرأة شاحبة ترتدي فستاناً أبيض. عندما التفتت، لم يكن هناك أحد. في كل مرة تنظر للمرآة، تقترب المرأة الشاحبة أكثر فأكثر. حاولت ليلى تغطية المرآة، لكنها تنكشف وحدها. في ليلة ممطرة، رأت ليلى المرأة تقف مباشرة خلفها في الانعكاس. هذه المرة، عندما التفتت، كانت المرأة هناك حقاً. وكانت تبتسم ابتسامة مرعبة. منذ ذلك اليوم، لم يرَ أحد ليلى مرة أخرى. لكن من ينظر للمرآة الآن، يرى ليلى محبوسة داخلها، تصرخ بلا صوت.'},
+            {id: 4, title: '📞 المكالمة الأخيرة', text: 'كان يوسف يعمل في نوبة ليلية في مكتب فارغ. عند منتصف الليل بالضبط، رن هاتف المكتب. صوت امرأة مرتعش قال: ساعدني، إنهم يطاردونني. أين أنت؟ سأل يوسف. الرد كان مخيفاً: أنا في الطابق السفلي. يوسف يعلم أن المبنى لا يوجد به طابق سفلي. في الليلة التالية، رن الهاتف مجدداً في نفس الوقت. نفس الصوت: لقد وجدوني. ساعدني من فضلك. ثم صرخة مروعة وانقطع الخط. في الليلة الثالثة، رن الهاتف مرة أخرى. يوسف رفع السماعة بيد مرتعشة. هذه المرة، صوت المرأة كان مختلفاً، بارداً وغريباً: شكراً لك يوسف. الآن جاء دورك أنت. سمع خطوات ثقيلة تصعد السلم نحو مكتبه.'},
+            {id: 5, title: '🚪 الباب الأحمر', text: 'انتقلت عائلة كريم إلى منزل قديم في ضواحي المدينة. في نهاية الممر، كان هناك باب أحمر مقفل. سألوا صاحب المنزل عنه، فقال بنبرة جدية: لا تفتحوا هذا الباب أبداً. في إحدى الليالي، سمع كريم خدشاً على الباب من الداخل. ثم همساً خافتاً: دعني أخرج. لم يستطع كريم مقاومة الفضول. وجد المفتاح القديم في الدرج وفتح الباب. خلفه كان هناك ظلام دامس وبرودة قارسة. لم يجد كريم أي شيء، فأغلق الباب بسرعة. لكن في الصباح، اكتشفت العائلة شيئاً مرعباً. الباب أصبح مفتوحاً من جديد. وعلى الأرض، آثار أقدام سوداء تخرج من الغرفة وتمتد في كل أرجاء المنزل. كريم لم يعد نفس الشخص بعد تلك الليلة. كان يهمس دائماً: إنهم خرجوا. لا يمكننا إعادتهم.'},
+            {id: 6, title: '🎭 القناع القديم', text: 'وجدت نورا قناعاً خشبياً قديماً في علية منزل جدتها. القناع كان محفوراً بنقوش غريبة وله ابتسامة مخيفة. قررت نورا ارتداءه للحظة فقط. بمجرد أن وضعته على وجهها، شعرت بإحساس غريب. عندما حاولت خلعه، لم يتحرك. القناع التصق بوجهها. صرخت نورا وحاولت بكل قوتها، لكن القناع كان جزءاً منها الآن. بدأت تشعر بأفكار غريبة تغزو عقلها. أفكار ليست لها. ذكريات قديمة لأشخاص لم تعرفهم أبداً. عندما نظرت للمرآة، رأت عينيها تتغير. أصبحت باهتة، ميتة. سمعت صوتاً داخل رأسها يضحك: الآن أنا حرة. وأنت محبوسة هنا معي إلى الأبد. أصدقاء نورا يقولون إنها تغيرت كلياً بعد ذلك اليوم. ابتسامتها أصبحت غريبة. ونظراتها باردة. وأحياناً، يسمعونها تتحدث بأصوات مختلفة.'},
+            {id: 7, title: '🌙 ليلة القمر الدامي', text: 'في قرية صغيرة، كان هناك أسطورة قديمة. كل مئة عام، يظهر قمر أحمر في السماء. وفي تلك الليلة، تستيقظ أرواح الموتى. عمر لم يصدق هذه الخرافات. لكن في ليلة الخامس عشر من أكتوبر، ظهر القمر أحمر بالفعل. في منتصف الليل، سمع عمر أصواتاً خارج منزله. نظر من النافذة ورأى أشكالاً سوداء تمشي في الشوارع. كانوا يتحركون ببطء، كالموتى الأحياء. طرقوا على بابه. أصوات باردة تنادي اسمه: عمر، افتح الباب. نحن أصدقاؤك القدامى. لكن عمر يعلم أن أصدقاءه القدامى ماتوا منذ سنوات. أغلق كل النوافذ والأبواب واختبأ. طوال الليل، استمرت الأصوات تناديه. عندما أشرقت الشمس، اختفت الأشكال. لكن على باب منزله، وجد رسالة محفورة بالدماء: سنعود في القمر التالي. وستأتي معنا هذه المرة.'},
+            {id: 8, title: '🏚️ البيت المهجور', text: 'في نهاية الشارع، كان هناك بيت مهجور لم يدخله أحد منذ عقود. تقول الشائعات إن عائلة كاملة اختفت فيه. راهن أصدقاء سلمان على أنه لن يجرؤ على قضاء ليلة واحدة بداخله. قبل سلمان التحدي. دخل البيت عند الغروب. الداخل كان مغطى بالغبار والعناكب. لكن الغريب أن الطاولة كانت مرتبة كأن أحداً يعيش هنا. في منتصف الليل، سمع سلمان أصوات أطفال يلعبون في الطابق العلوي. ضحكات وخطوات صغيرة. صعد السلم ببطء. فتح باب غرفة الأطفال. كان هناك ثلاثة أطفال يلعبون بالكرة. عندما رأوه، توقفوا. استداروا نحوه بوجوه شاحبة وعيون سوداء فارغة. قالوا في نفس الوقت بصوت واحد: هل ستلعب معنا للأبد؟ عندما وجدوا سلمان في الصباح، كان جالساً في الزاوية، يحدق في الفراغ، ويكرر: يجب أن ألعب معهم. وعدتهم. يجب أن ألعب للأبد.'},
+            {id: 9, title: '💀 السرداب المظلم', text: 'اكتشف ياسر باباً سرياً في قبو منزله الجديد. يؤدي إلى سرداب حجري قديم. أضاء شمعة ونزل السلالم الرطبة. الجدران كانت مليئة بنقوش غريبة ورموز قديمة. في نهاية السرداب، وجد غرفة صغيرة. في وسطها، صندوق خشبي قديم. عندما فتحه، وجد دفتر يوميات مكتوب بخط يد مرتعش. آخر صفحة كانت تقول: لا تطفئ الشمعة. إنهم يخافون من النور. الشمعة لا تخرجها من هنا أبداً. فجأة، انطفأت شمعة ياسر. الظلام كان كاملاً. سمع أصوات حركة حوله. أنفاس باردة على رقبته. أصوات همس من كل الاتجاهات. حاول إشعال الشمعة بسرعة. في ضوئها الخافت، رأى وجوهاً شاحبة محيطة به من كل جانب. كانوا يقتربون ببطء. ركض ياسر نحو السلم بأقصى سرعة. لكنه يعلم أنهم سيتبعونه. لأنه فتح الصندوق. لأنه قرأ الكلمات الملعونة. الآن هم أحرار.'},
+            {id: 10, title: '🎪 السيرك المهجور', text: 'مرت لينا بجانب سيرك قديم مهجور في طريقها للمنزل. كانت البوابة مفتوحة والخيام ممزقة. فضولها دفعها للدخول. في الوسط، كانت هناك خيمة كبيرة لا تزال واقفة. دخلتها ووجدت حلبة السيرك. المقاعد فارغة لكن نظيفة بشكل غريب. فجأة، أضاءت الأنوار. سمعت موسيقى السيرك القديمة تعزف. على الحلبة، ظهر مهرج طويل بوجه شاحب وابتسامة عريضة. بدأ يؤدي عرضاً فقط لها. قذف الكرات في الهواء. لكن الكرات لم تكن كرات. كانت جماجم صغيرة. المهرج أشار إليها: أنت الآن جزء من العرض. لينا حاولت الهرب لكن الأبواب أغلقت. المقاعد الفارغة بدأت تمتلئ بأشباح تصفق وتضحك. المهرج اقترب منها ببطء: العرض يجب أن يستمر. وأنت النجمة الجديدة. من يمر بجانب السيرك الآن يسمع ضحكات وموسيقى. وإذا نظروا بحذر، يرون فتاة ترقص على الحلبة بابتسامة مجمدة. لكنها ليست فتاة حقيقية بعد الآن. إنها دمية المهرج الجديدة.'},
+            {id: 11, title: '📖 الكتاب الملعون', text: 'في مكتبة عتيقة، وجد فادي كتاباً بغلاف جلدي أسود. لا يوجد عليه عنوان، فقط رمز غريب. صاحب المكتبة حذره: هذا الكتاب لا يُباع. لكن فادي سرقه. في الليل، بدأ يقرأ. القصص في الكتاب كانت مرعبة ومفصلة بشكل غريب. كل قصة تحكي عن شخص يموت بطريقة مروعة. لكن ما أرعب فادي هو أن القصة الأخيرة كانت عنه. تحكي عن رجل اسمه فادي يسرق كتاباً من مكتبة. والقصة تنتهي بموته في الليلة نفسها. نظر فادي للساعة. كانت منتصف الليل. نفس الوقت المكتوب في القصة. سمع طرقاً على الباب. عندما فتحه، لم يكن هناك أحد. لكن على الأرض، وجد صفحة ممزقة من الكتاب. عليها كُتب بخط دموي: القصة لم تنتهِ بعد. فقط بدأت. كل من يقرأ الكتاب، يصبح جزءاً منه. يصبح قصة جديدة. والآن، قصة فادي مكتوبة بالحبر الأسود، تنتظر القارئ التالي.'},
+            {id: 12, title: '🚂 قطار منتصف الليل', text: 'كان حسام ينتظر القطار في محطة فارغة. الوقت كان متأخراً جداً. فجأة، سمع صفارة قطار قديم. دخل قطار قديم الطراز المحطة. الأبواب فُتحت لكن لم ينزل أحد. صعد حسام متردداً. داخل القطار، كان هناك ركاب يجلسون بصمت. جميعهم يرتدون ملابس قديمة من عقود ماضية. لا أحد يتحرك أو ينظر إليه. جلس حسام في مقعد فارغ. بدأ القطار يتحرك. نظر من النافذة ورأى المحطة تختفي. لكن المناظر الخارجية كانت غريبة. مدن مدمرة. غابات محترقة. سماء حمراء. سأل الراكب المجاور: إلى أين يذهب هذا القطار؟ الرجل استدار ببطء. وجهه كان شاحباً وعيناه فارغتان. أجاب بصوت أجش: إلى المحطة الأخيرة. حيث تنتهي كل الرحلات. حاول حسام فتح الباب للنزول. لكنه مقفل. القطار كان يسرع. والركاب بدأوا يستديرون جميعاً نحوه. يحدقون. يبتسمون ابتسامات ميتة. أحدهم همس: مرحباً بك في القطار الأبدي. لن تنزل أبداً.'},
+            {id: 13, title: '🕯️ الشموع السبعة', text: 'وجدت مريم طقساً غريباً في كتاب قديم. يقول: أشعل سبع شموع في دائرة وقل الكلمات السحرية ثلاث مرات. ستحصل على أي أمنية تريدها. لكن تحذير صغير مكتوب بخط صغير في الأسفل: لا تدع الشموع تنطفئ. قررت مريم التجربة. رتبت الشموع وأشعلتها. قالت الكلمات. لم يحدث شيء في البداية. ثم سمعت همساً خافتاً يأتي من الظلام حول الدائرة. ما أمنيتك؟ تمنت مريم أن تصبح غنية. فجأة، رنّ هاتفها. خبر عن ميراث ضخم من قريب بعيد. فرحت مريم ونسيت الشموع. واحدة منها انطفأت. في تلك اللحظة، شعرت ببرودة شديدة. شمعة ثانية انطفأت. سمعت أصوات خطوات في الظلام. واحدة تلو الأخرى، الشموع بدأت تنطفئ. مع كل شمعة، يقترب شيء ما من الظلام. عندما انطفأت الشمعة الأخيرة، كانت وحدها في ظلام كامل. صوت قريب جداً همس في أذنها: لقد حصلتِ على أمنيتك. الآن حان وقت الثمن. لم يجدوا مريم في اليوم التالي. فقط الشموع السبعة. مرتبة في دائرة. كلها سوداء محترقة. وعلى الأرض، بقع داكنة لم تختفِ أبداً.'},
+            {id: 14, title: '🎵 أغنية الشبح', text: 'سمعت دانا أغنية جميلة تعزف في منزلها كل ليلة في الساعة الثالثة صباحاً. لحن هادئ وحزين يأتي من غرفة البيانو القديمة. لكن لا أحد في العائلة يعزف البيانو. في إحدى الليالي، قررت دانا النزول لترى من يعزف. فتحت باب غرفة البيانو بهدوء. كانت هناك امرأة شفافة ترتدي فستاناً أبيض طويلاً. أصابعها تتحرك على المفاتيح لكن لا تلمسها حقاً. الموسيقى تأتي من العدم. المرأة لم تستدر لكنها قالت: هل أعجبتك الأغنية؟ إنها آخر أغنية عزفتها قبل أن أموت هنا. دانا أرادت الهرب لكن قدميها لم تتحرك. المرأة أكملت: كنت أنتظر من يستمع لأغنيتي. الآن وجدتك. ستستمعين إليها كل ليلة. إلى الأبد. منذ تلك الليلة، أصبحت دانا تستيقظ كل ليلة في الساعة الثالثة بالضبط. تجلس على كرسي بجانب السرير. وتستمع للأغنية. لا تستطيع النوم. لا تستطيع المقاومة. فقط تستمع. وعيناها تفرغ ببطء. صارت مثل عيون المرأة في الفستان الأبيض. ميتة. باردة. فارغة.'},
+            {id: 15, title: '🌊 البحيرة الملعونة', text: 'ذهب خالد وأصدقاؤه للتخييم بجانب بحيرة نائية. السكان المحليون حذروهم: لا تقتربوا من البحيرة بعد الغروب. لكنهم سخروا من الخرافة. في الليل، سمعوا غناءً جميلاً يأتي من البحيرة. صوت امرأة شجي وساحر. خالد شعر بدافع لا يقاوم للاقتراب من الماء. مشى نحو البحيرة وكأنه في حلم. رأى امرأة جميلة تسبح في الماء. شعرها الطويل ينساب حولها. أشارت له: تعال. الماء دافئ والليلة هادئة. دخل خالد الماء خطوة فخطوة. عندما وصل إلى عمق صدره، أمسكت المرأة بيده. عندها رأى وجهها الحقيقي. عيناها ميتتان. بشرتها زرقاء ومنتفخة. فمها مليء بأسنان حادة. سحبته تحت الماء بقوة خارقة. أصدقاؤه ركضوا لمساعدته. لكن عندما وصلوا الشاطئ، كانت البحيرة هادئة تماماً. لا أثر لخالد. فقط دوائر صغيرة على سطح الماء. وفي الماء، رأوا أشكالاً سوداء تسبح تحت السطح. عشرات منها. مئات. جميعهم ينتظرون. البعض يقول إن خالد لا يزال هناك. في قاع البحيرة. مع الآخرين. ينتظرون الضحية التالية.'},
+            {id: 16, title: '🎃 القرع الحي', text: 'في ليلة هالوين، نحت طارق قرعة ضخمة بوجه مخيف. وضع شمعة بداخلها وتركها على الشرفة. في منتصف الليل، سمع صوتاً غريباً من الخارج. ضحكة عميقة وبطيئة. نظر من النافذة ورأى القرعة تضيء بشكل أقوى. الوجه المنحوت يتحرك. الفم يتسع. العيون تنظر مباشرة إليه. فتح الباب ووجد القرعة على الأرض أمامه مباشرة. لم يكن قد حركها. كيف وصلت للباب؟ ركل القرعة بعيداً. لكن في الصباح، كانت القرعة على عتبة بابه مرة أخرى. هذه المرة كان هناك نقش جديد: لا يمكنك التخلص مني. حاول طارق رميها في القمامة، دفنها في الحديقة، حرقها. لكن كل صباح، كانت تعود. وكل يوم، كان الوجه المنحوت يبدو أكثر واقعية. أكثر غضباً. في ليلة هالوين التالية، اختفى طارق. البيت أصبح فارغاً. لكن على الشرفة، لا تزال القرعة هناك. تضيء كل ليلة. والآن، الوجه المنحوت عليها يبدو مألوفاً بشكل مرعب. يبدو كوجه طارق. يصرخ بلا صوت. محاصر داخل القرعة. إلى الأبد.'},
+            {id: 17, title: '🦇 الخفاش الأبيض', text: 'رأت سلمى خفاشاً أبيض غريباً يحوم حول نافذتها كل ليلة. كان أكبر من الخفافيش العادية وعيناه حمراوان تتوهجان. في إحدى الليالات، نسيت سلمى إغلاق النافذة. في الصباح، استيقظت على ألم في رقبتها. وجدت علامتي عض صغيرتين. ظنت أنها ناموسة. لكن كل ليلة، كان الألم يزداد. شعرت بالضعف والدوار. كانت تحلم أحلاماً غريبة. ترى نفسها تطير في الليل. تصطاد فرائس. تشرب الدماء. استيقظت ذات ليلة ووجدت نفسها واقفة على النافذة. على وشك القفز. كانت تسمع صوتاً يناديها: تعالي. انضمي إلينا. الليل ملكنا. نظرت سلمى في المرآة ورأت عيناها تتحول للأحمر. أنيابها تطول. بشرتها تشحب. الخفاش الأبيض كان واقفاً على النافذة. يراقبها. ينتظرها. سلمى تعلم الآن أنها لم تعد إنسانة. التحول بدأ. قريباً، ستنضم إلى السرب. ستصبح واحدة منهم. خفاشاً أبيض يصطاد في الليل. يبحث عن ضحايا جدد. يحولهم. واحداً تلو الآخر. السرب ينمو. والليل طويل.'},
+            {id: 18, title: '🕷️ العناكب في الجدران', text: 'انتقل وائل إلى شقة قديمة رخيصة. في الليلة الأولى، سمع خدشاً خفيفاً في الجدران. ظن أنها فئران. لكن الصوت كان مختلفاً. كآلاف الأرجل الصغيرة تمشي. في الصباح، وجد شقوقاً صغيرة في الجدران. خيوط عنكبوت رفيعة تخرج منها. حاول تنظيفها لكنها كانت تعود في اليوم التالي. أقوى. أكثر. الشقوق بدأت تتسع. خيوط العنكبوت أصبحت سميكة. في إحدى الليالي، استيقظ وائل على إحساس بحركة على وجهه. فتح عينيه ورأى عنكبوتاً أسود ضخماً يزحف على وسادته. صرخ وقفز من السرير. نظر حوله ورأى مئات العناكب تزحف من الجدران. من السقف. من تحت الأبواب. الغرفة كانت تمتلئ بها. حاول الهرب لكن الباب كان مغطى بخيوط عنكبوت سميكة. التصقت يده بها. كلما حاول التحرر، التصق أكثر. العناكب كانت تقترب. تحيط به من كل جانب. يتسلقون ساقيه. ذراعيه. رقبته. وائل يصرخ لكن لا أحد يسمعه. الشقة معزولة. والجيران لا يهتمون. عندما جاء صاحب العقار بعد أسبوع، وجد الشقة فارغة. الجدران كانت مغطاة بخيوط عنكبوت سميكة. في الوسط، شيء كبير ملفوف بالخيوط. يتحرك قليلاً. يحاول أن يتنفس.'},
+            {id: 19, title: '⚰️ النعش الفارغ', text: 'كان عدنان يعمل حفار قبور في مقبرة قديمة. في إحدى الليالي، طُلب منه حفر قبر جديد في قسم مهجور. أثناء الحفر، ارتطم بشيء صلب. نعش قديم دُفن بدون علامة. فضوله دفعه لفتحه. النعش كان فارغاً. لكن بداخله، كان هناك نقش: من يفتح هذا النعش، يأخذ مكان من كان فيه. عدنان ضحك وأغلق النعش. لكن في تلك الليلة، بدأت الكوابيس. يحلم أنه محبوس في نعش. يصرخ لكن لا أحد يسمعه. التراب يغطيه. لا يستطيع التنفس. استيقظ مرعوباً. لكن الكوابيس استمرت كل ليلة. أصبحت أطول. أكثر واقعية. بدأ يشعر بالاختناق حتى عندما يكون مستيقظاً. في إحدى الليالي، لم يستيقظ عدنان. عندما ذهبوا لمنزله، وجدوا السرير فارغاً. لكن في المقبرة، القبر الذي حفره كان ممتلئاً الآن. دفنوا شيئاً فيه أثناء الليل. وعندما فتحوه، وجدوا النعش القديم. ومن داخله، سمعوا طرقاً ضعيفاً. وصوتاً مكتوماً يصرخ: أخرجوني. أرجوكم. لا أريد أن أكون هنا. لكن لم يفتحه أحد. لأنهم يعلمون. أن من يفتحه، سيأخذ مكانه. اللعنة تنتقل. من شخص لآخر. إلى الأبد.'},
+            {id: 20, title: '🌑 ليلة بلا نجوم', text: 'لاحظ راشد شيئاً غريباً. السماء كانت سوداء تماماً. لا نجوم. لا قمر. ظلام كامل. ظن أنها غيوم. لكن الأيام التالية كانت نفس الشيء. السماء سوداء دائماً. الناس بدأوا يشعرون بالقلق. لم يروا الشمس منذ أسبوع. في الليلة السابعة، سمع راشد أصواتاً في السماء. همساً جماعياً عميقاً. كأن السماء نفسها تتحدث. نظر للأعلى وشعر أن شيئاً ينظر إليه من الظلام. شيء ضخم جداً. قديم جداً. في الليلة العاشرة، بدأت الأشياء تختفي. أولاً الحيوانات. ثم الأشجار. ثم المباني البعيدة. كأن الظلام يبتلع كل شيء. الناس كانوا يختفون أيضاً. واحداً تلو الآخر. يمشون في الظلام ولا يعودون أبداً. راشد أغلق نفسه في منزله. لكن الظلام كان يتسلل من تحت الأبواب. من النوافذ. يملأ الغرف ببطء. سمع همساً في الظلام: لا تقاوم. كلنا سنعود إلى الظلام في النهاية. هذا فقط البداية. الليل الحقيقي قادم. والليل لن ينتهي أبداً. راشد شعر بيد باردة تمسك كتفه في الظلام. استدار لكنه لم يرَ شيئاً. فقط ظلام. ظلام يتحرك. ظلام حي. ظلام جائع.'}
+        ];
+
+        function handleCredentialResponse(response) {
+            if (!response || !response.credential) {
+                alert('فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.');
+                return;
+            }
+
+            try {
+                const responsePayload = decodeJwtResponse(response.credential);
+                
+                if (!responsePayload || !responsePayload.sub || !responsePayload.email) {
+                    throw new Error('بيانات غير صحيحة');
+                }
+
+                currentUser = {
+                    id: responsePayload.sub,
+                    name: responsePayload.name || 'مستخدم',
+                    email: responsePayload.email,
+                    picture: responsePayload.picture || ''
+                };
+
+                try {
+                    localStorage.setItem('user', JSON.stringify(currentUser));
+                } catch (storageError) {
+                    console.warn('تعذر حفظ البيانات:', storageError);
+                }
+
+                displayUser(currentUser);
+                showMainContent();
+            } catch (error) {
+                console.error('خطأ في معالجة تسجيل الدخول:', error);
+                alert('حدث خطأ أثناء تسجيل الدخول');
+            }
+        }
+
+        function decodeJwtResponse(token) {
+            try {
+                const base64Url = token.split('.')[1];
+                if (!base64Url) throw new Error('رمز غير صالح');
+                
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(
+                    atob(base64)
+                        .split('')
+                        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                        .join('')
+                );
+                
+                return JSON.parse(jsonPayload);
+            } catch (error) {
+                console.error('خطأ في فك التشفير:', error);
+                throw new Error('فشل فك تشفير البيانات');
+            }
+        }
+
+        function displayUser(user) {
+            const userImage = document.getElementById('userImage');
+            const userName = document.getElementById('userName');
+            const userEmail = document.getElementById('userEmail');
+            const desktopUserName = document.getElementById('desktopUserName');
+            const mobileUserName = document.getElementById('mobileUserName');
+
+            if (userImage && user.picture) {
+                userImage.src = user.picture;
+                userImage.onerror = () => {
+                    userImage.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><circle cx="25" cy="25" r="25" fill="%23ff6b35"/></svg>';
+                };
+            }
+            if (userName) userName.textContent = user.name || 'مستخدم';
+            if (userEmail) userEmail.textContent = user.email || '';
+            
+            // إضافة اسم المستخدم في رسالة الترحيب
+            const firstName = user.name ? user.name.split(' ')[0] : 'عزيزي';
+            if (desktopUserName) desktopUserName.textContent = firstName;
+            if (mobileUserName) mobileUserName.textContent = firstName;
+        }
+
+        function buildStories() {
+            const storyList = document.getElementById('storyList');
+            const storiesContainer = document.getElementById('storiesContainer');
+
+            if (!storyList || !storiesContainer) return;
+
+            stories.forEach((story, index) => {
+                const li = document.createElement('li');
+                li.dataset.story = index;
+                li.textContent = story.title;
+                li.setAttribute('role', 'button');
+                li.setAttribute('tabindex', '0');
+                if (index === 0) li.classList.add('active');
+                
+                li.addEventListener('click', () => {
+                    selectStory(index);
+                    if (window.innerWidth <= 768) closeSidebar();
+                });
+
+                li.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectStory(index);
+                        if (window.innerWidth <= 768) closeSidebar();
+                    }
+                });
+
+                storyList.appendChild(li);
+
+                const storyDiv = document.createElement('div');
+                storyDiv.className = 'story' + (index === 0 ? ' active' : '');
+                storyDiv.id = `story-${index}`;
+                storyDiv.innerHTML = `
+                    <h2 class="story-title">${story.title}</h2>
+                    <div class="story-controls">
+                        <button class="story-btn" id="playBtn-${index}" onclick="readStory(${index})">🔊 قراءة القصة</button>
+                        <button class="story-btn" id="stopBtn-${index}" onclick="stopReading()">⏹️ توقف</button>
+                    </div>
+                    <div class="voice-status" id="status-${index}">🎃 جاهز للقراءة</div>
+                    <div class="story-text">${story.text.split('. ').filter(p => p.trim()).map(p => `<p>${p}.</p>`).join('')}</div>
+                    <div class="story-navigation">
+                        <button class="nav-btn" onclick="previousStory()" ${index === 0 ? 'disabled' : ''}>⬅️ القصة السابقة</button>
+                        <button class="nav-btn" onclick="nextStory()" ${index === stories.length - 1 ? 'disabled' : ''}>القصة التالية ➡️</button>
+                    </div>
+                `;
+                storiesContainer.appendChild(storyDiv);
+            });
+            
+            loadVoices();
+        }
+
+        function selectStory(index) {
+            if (index < 0 || index >= stories.length) return;
+
+            document.querySelectorAll('.story').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.story-list li').forEach(l => l.classList.remove('active'));
+            
+            const storyEl = document.getElementById(`story-${index}`);
+            const listItem = document.querySelector(`[data-story="${index}"]`);
+            
+            if (storyEl) storyEl.classList.add('active');
+            if (listItem) listItem.classList.add('active');
+            
+            currentStory = index;
+            updateProgressBar();
+            saveProgress();
+            stopReading();
+            
+            const contentArea = document.querySelector('.content-area');
+            if (contentArea) contentArea.scrollTop = 0;
+        }
+
+        function nextStory() {
+            if (currentStory < stories.length - 1) selectStory(currentStory + 1);
+        }
+
+        function previousStory() {
+            if (currentStory > 0) selectStory(currentStory - 1);
+        }
+
+        function loadVoices() {
+            if ('speechSynthesis' in window) {
+                voices = speechSynthesis.getVoices();
+                speechSynthesis.onvoiceschanged = () => {
+                    voices = speechSynthesis.getVoices();
+                };
+            }
+        }
+
+        function readStory(index) {
+            if (index < 0 || index >= stories.length) return;
+
+            stopReading();
+            
+            const story = stories[index];
+            const statusEl = document.getElementById(`status-${index}`);
+            const playBtn = document.getElementById(`playBtn-${index}`);
+            
+            if (!statusEl || !playBtn) return;
+
+            if (!('speechSynthesis' in window)) {
+                statusEl.textContent = '❌ المتصفح لا يدعم القراءة الصوتية';
+                return;
+            }
+            
+            isReading = true;
+            playBtn.disabled = true;
+            statusEl.textContent = '⏳ جاري التحضير...';
+            statusEl.classList.add('active');
+            
+            try {
+                utterance = new SpeechSynthesisUtterance(story.text);
+                
+                const arabicVoice = voices.find(v => v.lang && v.lang.startsWith('ar'));
+                if (arabicVoice) utterance.voice = arabicVoice;
+                
+                utterance.lang = 'ar-SA';
+                utterance.rate = 1;
+                utterance.volume = 1;
+                utterance.pitch = 1;
+                
+                utterance.onstart = () => {
+                    isReading = true;
+                    if (statusEl) statusEl.textContent = '👻 جاري القراءة...';
+                };
+                
+                utterance.onend = () => {
+                    if (isReading) {
+                        isReading = false;
+                        if (statusEl) {
+                            statusEl.textContent = '✅ انتهت القراءة';
+                            statusEl.classList.remove('active');
+                        }
+                        if (playBtn) playBtn.disabled = false;
+                    }
+                };
+                
+                utterance.onerror = (event) => {
+                    console.error('خطأ في القراءة:', event);
+                    if (statusEl) {
+                        statusEl.textContent = '❌ خطأ في القراءة';
+                        statusEl.classList.remove('active');
+                    }
+                    if (playBtn) playBtn.disabled = false;
+                    isReading = false;
+                };
+                
+                speechSynthesis.cancel();
+                speechSynthesis.speak(utterance);
+            } catch (error) {
+                console.error('فشل التشغيل:', error);
+                if (statusEl) statusEl.textContent = '❌ فشل التشغيل';
+                if (playBtn) playBtn.disabled = false;
+                isReading = false;
+            }
+        }
+
+        function stopReading() {
+            if (isReading || (speechSynthesis && speechSynthesis.speaking)) {
+                try {
+                    speechSynthesis.cancel();
+                } catch (error) {
+                    console.error('خطأ في الإيقاف:', error);
+                }
+                
+                isReading = false;
+                
+                document.querySelectorAll('.voice-status').forEach(s => {
+                    s.textContent = '⏹️ تم الإيقاف';
+                    s.classList.remove('active');
+                });
+                
+                document.querySelectorAll('[id^="playBtn-"]').forEach(btn => {
+                    btn.disabled = false;
+                });
+            }
+        }
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar && stories.length > 0) {
+                progressBar.style.width = ((currentStory + 1) / stories.length) * 100 + '%';
+            }
+        }
+
+        function saveProgress() {
+            if (currentUser) {
+                try {
+                    localStorage.setItem('lastStory', currentStory.toString());
+                } catch (error) {
+                    console.warn('تعذر حفظ التقدم:', error);
+                }
+            }
+        }
+
+        function showMainContent() {
+            const loginScreen = document.getElementById('loginScreen');
+            const header = document.getElementById('header');
+            const mainLayout = document.getElementById('mainLayout');
+
+            if (loginScreen) loginScreen.classList.add('hidden');
+            if (header) header.style.display = 'grid';
+            if (mainLayout) mainLayout.style.display = 'grid';
+            
+            buildStories();
+            
+            try {
+                if (window.adsbygoogle) {
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                }
+            } catch (e) {
+                console.warn('لم يتم تحميل الإعلانات:', e);
+            }
+        }
+
+        function logout() {
+            if (confirm('هل أنت متأكد أنك تريد تسجيل الخروج؟')) {
+                try {
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('lastStory');
+                } catch (error) {
+                    console.warn('خطأ في حذف البيانات:', error);
+                }
+                
+                currentUser = null;
+                stopReading();
+                location.reload();
+            }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (sidebar) sidebar.classList.toggle('active');
+            if (overlay) overlay.classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (sidebar) sidebar.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
+
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextStory();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    previousStory();
+                } else if (e.key === ' ') {
+                    e.preventDefault();
+                    if (isReading) stopReading();
+                    else readStory(currentStory);
+                } else if (e.key === 'Escape') {
+                    stopReading();
+                    closeSidebar();
+                }
+            });
+        });
+
+        window.addEventListener('load', () => {
+            // تهيئة Google Sign-In تلقائياً
+            const initGoogleSignIn = () => {
+                if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                    try {
+                        google.accounts.id.initialize({
+                            client_id: '295699802302-t4l7rov5vo93g20fuphhbh4sj21dbgu1.apps.googleusercontent.com',
+                            callback: handleCredentialResponse,
+                            auto_select: false
+                        });
+                        
+                        // عرض زر Google الرسمي
+                        const signInDiv = document.getElementById('g_id_signin');
+                        if (signInDiv) {
+                            google.accounts.id.renderButton(
+                                signInDiv,
+                                { 
+                                    theme: 'filled_blue',
+                                    size: 'large',
+                                    text: 'signin_with',
+                                    width: 300,
+                                    locale: 'ar'
+                                }
+                            );
+                        }
+                    } catch (error) {
+                        console.error('خطأ في تهيئة Google Sign-In:', error);
+                    }
+                } else {
+                    // إعادة المحاولة بعد ثانية
+                    setTimeout(initGoogleSignIn, 1000);
+                }
+            };
+            
+            // بدء التهيئة
+            setTimeout(initGoogleSignIn, 500);
+            
+            // استعادة الجلسة السابقة
+            try {
+                const savedUser = localStorage.getItem('user');
+                if (savedUser) {
+                    const parsedUser = JSON.parse(savedUser);
+                    if (parsedUser && parsedUser.id && parsedUser.email) {
+                        currentUser = parsedUser;
+                        displayUser(currentUser);
+                        showMainContent();
+                    }
+                }
+            } catch (error) {
+                console.error('خطأ في استعادة الجلسة:', error);
+                localStorage.removeItem('user');
+            }
+        });
+
+        window.addEventListener('beforeunload', () => {
+            stopReading();
+        });
+
+        window.handleCredentialResponse = handleCredentialResponse;
+        window.logout = logout;
+        window.readStory = readStory;
+        window.stopReading = stopReading;
+        window.nextStory = nextStory;
+        window.previousStory = previousStory;
+    </script>
+</body>
+
+</html>
+
+
+
+
+
