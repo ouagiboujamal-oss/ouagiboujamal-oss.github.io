@@ -862,7 +862,7 @@
             }
         });
 
-        // ==================== GOOGLE SIGN-IN (FIXED) ====================
+        // ==================== GOOGLE SIGN-IN (FIXED with your Client ID) ====================
         function decodeJwtResponse(token) {
             try {
                 const base64Url = token.split('.')[1];
@@ -895,15 +895,15 @@
             }
         }
 
-// Initialize Google Sign-In only once
-window.onload = function() {
-    try {
-        google.accounts.id.initialize({
-            client_id: "295699802302-ip9hna0tidtcmgtolao76b3sotf04526.apps.googleusercontent.com", // <--- هنا ضع الـ Client ID
-            callback: handleGoogleSignIn,
-            auto_select: false,
-            cancel_on_tap_outside: true
-        });
+        // Initialize Google Sign-In only once with YOUR Client ID
+        window.onload = function() {
+            try {
+                google.accounts.id.initialize({
+                    client_id: "295699802302-ip9hna0tidtcmgtolao76b3sotf04526.apps.googleusercontent.com", // <--- تم وضع الـ Client ID الصحيح هنا
+                    callback: handleGoogleSignIn,
+                    auto_select: false,
+                    cancel_on_tap_outside: true
+                });
                 
                 google.accounts.id.renderButton(
                     document.getElementById('googleSignInDiv'),
@@ -917,15 +917,12 @@ window.onload = function() {
                     }
                 );
                 
-                // Optional: display the One Tap dialog
-                // google.accounts.id.prompt(); // uncomment if you want One Tap
+                // Initialize the main display
+                displayCards();
             } catch (e) {
                 console.error('Google init error:', e);
                 document.getElementById('googleSignInDiv').innerHTML = '<p style="color:#888">Google sign-in temporarily unavailable</p>';
             }
-            
-            // Initialize the main display
-            displayCards();
         };
 
         // ==================== DISPLAY SYSTEM ====================
@@ -1034,5 +1031,3 @@ window.onload = function() {
     </script>
 </body>
 </html>
-
-
