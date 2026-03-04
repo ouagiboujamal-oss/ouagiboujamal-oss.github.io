@@ -895,15 +895,15 @@
             }
         }
 
-        // Initialize Google Sign-In only once
-        window.onload = function() {
-            try {
-                google.accounts.id.initialize({
-                    client_id: "295699802302-ip9hna0tidtcmgtolao76b3sotf04526.apps.googleusercontent.com",
-                    callback: handleGoogleSignIn,
-                    auto_select: false,
-                    cancel_on_tap_outside: true
-                });
+// Initialize Google Sign-In only once
+window.onload = function() {
+    try {
+        google.accounts.id.initialize({
+            client_id: "295699802302-ip9hna0tidtcmgtolao76b3sotf04526.apps.googleusercontent.com", // <--- هنا ضع الـ Client ID
+            callback: handleGoogleSignIn,
+            auto_select: false,
+            cancel_on_tap_outside: true
+        });
                 
                 google.accounts.id.renderButton(
                     document.getElementById('googleSignInDiv'),
@@ -1034,4 +1034,5 @@
     </script>
 </body>
 </html>
+
 
