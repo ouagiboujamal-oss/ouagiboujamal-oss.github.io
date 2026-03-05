@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Guide | Encyclopedia of Medicines & First Aid</title>
+    <title>Medical Guide | Complete Encyclopedia of Medicines & First Aid</title>
     
     <!-- Monetag Ads -->
     <meta name="monetag" content="13c120f9b2fa3bfb6f07aab7ec41938e">
     <script src="https://5gvci.com/act/files/tag.min.js?z=10669434" data-cfasync="false" async></script>
     <script src="https://quge5.com/88/tag.min.js" data-zone="215492" async data-cfasync="false"></script>
     
-    <!-- Google AdSense (place your code) -->
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (keeping Cairo for consistent style, but you can change) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Google Sign-In -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     
@@ -25,43 +25,41 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
             background: #0a0a0a;
             color: #e0e0e0;
-            line-height: 1.6;
         }
 
-        /* ========== TOP NAVBAR ========== */
+        /* Navbar */
         .navbar {
             background: #111;
-            padding: 15px 40px;
+            padding: 10px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #f97316;
+            border-bottom: 2px solid #f97316;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.2);
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .logo i {
-            font-size: 32px;
+            font-size: 24px;
             color: #f97316;
         }
 
         .logo h1 {
-            font-size: 26px;
-            font-weight: 800;
+            font-size: 20px;
+            font-weight: 700;
             color: #fff;
         }
 
@@ -72,22 +70,21 @@
         .user-area {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .login-btn {
             background: transparent;
-            border: 2px solid #f97316;
+            border: 1.5px solid #f97316;
             color: #f97316;
-            padding: 8px 25px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
-            transition: 0.3s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .login-btn:hover {
@@ -99,79 +96,82 @@
             background: #f97316;
             border: none;
             color: #000;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             display: none;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
 
         .profile-btn img {
-            width: 32px;
-            height: 32px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             border: 2px solid #fff;
         }
 
-        /* ========== MAIN TABS ========== */
+        .welcome-text {
+            color: #000;
+            font-weight: 500;
+        }
+
+        /* Tabs */
         .tabs-container {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin: 30px 0 20px;
-            border-bottom: 2px solid #222;
-            padding-bottom: 10px;
+            gap: 20px;
+            margin: 20px 0 15px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 8px;
         }
 
         .tab {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             color: #888;
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 500;
             cursor: pointer;
-            padding: 5px 15px;
-            transition: 0.3s;
+            padding: 4px 12px;
         }
 
         .tab i {
-            font-size: 24px;
+            font-size: 18px;
         }
 
         .tab.active {
             color: #f97316;
-            border-bottom: 3px solid #f97316;
+            border-bottom: 2px solid #f97316;
         }
 
-        /* ========== SEARCH ========== */
+        /* Search */
         .search-box {
-            max-width: 600px;
-            margin: 0 auto 30px;
+            max-width: 500px;
+            margin: 0 auto 20px;
             position: relative;
         }
 
         .search-box i {
             position: absolute;
-            right: 20px;
+            right: 15px;
             top: 50%;
             transform: translateY(-50%);
             color: #f97316;
-            font-size: 18px;
+            font-size: 14px;
         }
 
         .search-box input {
             width: 100%;
-            padding: 15px 50px 15px 20px;
+            padding: 10px 40px 10px 15px;
             background: #1a1a1a;
-            border: 2px solid #333;
-            border-radius: 60px;
+            border: 1px solid #333;
+            border-radius: 40px;
             color: #fff;
-            font-size: 16px;
-            transition: 0.3s;
+            font-size: 14px;
         }
 
         .search-box input:focus {
@@ -179,45 +179,46 @@
             border-color: #f97316;
         }
 
-        /* ========== STATS ========== */
+        /* Stats */
         .stats {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 20px;
+            margin-bottom: 20px;
             color: #888;
+            font-size: 13px;
         }
 
         .stats i {
             color: #f97316;
-            margin-left: 5px;
+            margin-right: 4px;
         }
 
-        /* ========== CARDS GRID ========== */
+        /* Cards Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 20px 40px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            padding: 0 25px;
+            margin-bottom: 20px;
         }
 
         .card {
             background: #141414;
-            border-radius: 25px;
+            border-radius: 18px;
             border: 1px solid #2a2a2a;
             overflow: hidden;
-            transition: 0.3s;
             cursor: pointer;
+            transition: 0.2s;
         }
 
         .card:hover {
             border-color: #f97316;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.2);
+            transform: translateY(-3px);
         }
 
         .card-header {
-            height: 120px;
+            height: 90px;
             background: #1f1f1f;
             display: flex;
             align-items: center;
@@ -226,7 +227,7 @@
         }
 
         .card-header i {
-            font-size: 50px;
+            font-size: 36px;
             color: #f97316;
         }
 
@@ -240,120 +241,171 @@
 
         .emergency-badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 8px;
+            left: 8px;
             background: #ef4444;
             color: #fff;
-            padding: 5px 10px;
-            border-radius: 30px;
-            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 10px;
             font-weight: 600;
         }
 
         .card-content {
-            padding: 20px;
+            padding: 14px;
         }
 
         .card-title {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: 600;
             color: #fff;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .card-category {
             color: #f97316;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 6px;
         }
 
         .card-desc {
             color: #aaa;
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 12px;
+            line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        /* ========== AD SPACES ========== */
+        /* Ad Spaces - Only 2 */
         .ad-space {
             width: 100%;
             background: #1a1a1a;
-            border-radius: 20px;
-            margin: 30px 0;
-            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            padding: 15px;
             text-align: center;
-            border: 2px dashed #f97316;
-            min-height: 120px;
+            border: 1px dashed #f97316;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #888;
+            font-size: 13px;
         }
 
         .ad-label {
-            font-size: 12px;
+            font-size: 10px;
             color: #666;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
-        /* ========== HUMAN BODY SECTION ========== */
+        /* Human Body Section - Full with image and article */
         .human-body-section {
-            padding: 20px 40px;
+            padding: 20px 25px;
+            background: #0f0f0f;
+            border-radius: 30px;
+            margin: 20px 25px;
+            border: 1px solid #2a2a2a;
         }
 
         .body-title {
             text-align: center;
             color: #f97316;
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px;
         }
 
         .body-image-container {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .body-image-container img {
             max-width: 100%;
+            width: 600px;
             height: auto;
             border-radius: 30px;
             border: 4px solid #f97316;
-            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.3);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
         }
 
         .body-parts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
             background: #141414;
-            border-radius: 30px;
-            padding: 30px;
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 30px;
             border: 1px solid #2a2a2a;
         }
 
         .body-part {
             background: #1f1f1f;
-            padding: 12px 20px;
-            border-radius: 50px;
+            padding: 10px 15px;
+            border-radius: 40px;
             text-align: center;
             color: #f97316;
-            font-weight: 600;
+            font-weight: 500;
+            font-size: 14px;
             border: 1px solid #333;
-            transition: 0.3s;
         }
 
-        .body-part:hover {
-            background: #f97316;
-            color: #000;
-            transform: scale(1.05);
+        .body-article {
+            background: #141414;
+            border-radius: 25px;
+            padding: 30px;
+            border: 1px solid #2a2a2a;
         }
 
-        /* ========== DETAIL MODAL ========== */
+        .body-article h3 {
+            color: #f97316;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .body-article p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .body-article ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .body-article li {
+            background: #1f1f1f;
+            padding: 15px 20px;
+            border-radius: 15px;
+            border-right: 4px solid #f97316;
+        }
+
+        .body-article li strong {
+            color: #f97316;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .body-article li span {
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        /* Detail Modal */
         .modal {
             display: none;
             position: fixed;
@@ -362,11 +414,11 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
         }
 
         .modal.active {
@@ -376,83 +428,85 @@
         .modal-content {
             background: #1a1a1a;
             width: 90%;
-            max-width: 600px;
+            max-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
-            border-radius: 40px;
-            padding: 35px;
+            border-radius: 24px;
+            padding: 25px;
             border: 2px solid #f97316;
             position: relative;
         }
 
         .close-modal {
             position: absolute;
-            top: 20px;
-            left: 25px;
-            font-size: 28px;
+            top: 15px;
+            left: 18px;
+            font-size: 22px;
             color: #ef4444;
             cursor: pointer;
         }
 
         .detail-icon {
-            font-size: 60px;
+            font-size: 48px;
             color: #f97316;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .detail-name {
-            font-size: 36px;
-            font-weight: 800;
+            font-size: 28px;
+            font-weight: 700;
             color: #fff;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .detail-category {
             text-align: center;
             color: #f97316;
-            font-size: 16px;
-            margin-bottom: 25px;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
         .detail-section {
             background: #242424;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-right: 5px solid #f97316;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-right: 4px solid #f97316;
         }
 
         .detail-section h3 {
             color: #f97316;
-            margin-bottom: 10px;
+            font-size: 18px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .detail-section p, .detail-section li {
             color: #ccc;
-            font-size: 16px;
-            line-height: 1.7;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
         .warning-box {
             background: #2d1a1a;
             border: 1px solid #ef4444;
-            border-radius: 20px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 15px;
             display: flex;
-            gap: 15px;
+            gap: 12px;
+            font-size: 14px;
         }
 
         .warning-box i {
             color: #ef4444;
-            font-size: 24px;
+            font-size: 20px;
         }
 
-        /* ========== AUTH MODAL ========== */
+        /* Auth Modal */
         .auth-modal {
             display: none;
             position: fixed;
@@ -473,23 +527,23 @@
         .auth-container {
             background: #1a1a1a;
             width: 90%;
-            max-width: 400px;
-            border-radius: 30px;
-            padding: 35px;
+            max-width: 360px;
+            border-radius: 24px;
+            padding: 25px;
             border: 2px solid #f97316;
         }
 
         .auth-tabs {
             display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
         }
 
         .auth-tab {
             color: #888;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -508,69 +562,55 @@
 
         .auth-form input {
             width: 100%;
-            padding: 15px 20px;
+            padding: 10px 15px;
             background: #2a2a2a;
             border: 1px solid #444;
-            border-radius: 50px;
+            border-radius: 30px;
             color: #fff;
-            margin-bottom: 15px;
-            font-size: 16px;
+            margin-bottom: 12px;
+            font-size: 14px;
         }
 
         .auth-form button {
             width: 100%;
-            padding: 15px;
+            padding: 10px;
             background: #f97316;
             border: none;
-            border-radius: 50px;
+            border-radius: 30px;
             color: #000;
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .divider {
             text-align: center;
             color: #666;
-            margin: 20px 0;
+            margin: 15px 0;
+            font-size: 13px;
         }
 
-        /* ========== FOOTER ========== */
         footer {
             background: #111;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
             color: #666;
-            margin-top: 50px;
-            border-top: 2px solid #f97316;
+            margin-top: 30px;
+            border-top: 1px solid #f97316;
+            font-size: 13px;
         }
 
-        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-            .logo h1 {
-                font-size: 20px;
-            }
-            .tabs-container {
-                gap: 15px;
-            }
-            .tab {
-                font-size: 16px;
-            }
-            .tab i {
-                font-size: 20px;
-            }
-            .grid {
-                padding: 20px;
-            }
+            .navbar { padding: 8px 15px; }
+            .grid { padding: 0 15px; }
+            .human-body-section { padding: 15px; margin: 15px; }
+            .body-image-container img { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- Top Navbar -->
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
             <i class="fas fa-stethoscope"></i>
@@ -582,6 +622,7 @@
             </button>
             <button class="profile-btn" id="profileBtn">
                 <img id="profileImage" src="" alt="">
+                <span class="welcome-text" id="welcomeMessage">Welcome</span>
                 <span id="profileName"></span>
             </button>
         </div>
@@ -616,11 +657,11 @@
         <div class="tabs-container">
             <div class="tab active" data-tab="medicines">
                 <i class="fas fa-pills"></i>
-                <span>Medicines</span>
+                <span>Medicines (250+)</span>
             </div>
             <div class="tab" data-tab="firstaid">
                 <i class="fas fa-heartbeat"></i>
-                <span>First Aid</span>
+                <span>First Aid (40+)</span>
             </div>
             <div class="tab" data-tab="humanbody">
                 <i class="fas fa-child"></i>
@@ -628,66 +669,105 @@
             </div>
         </div>
 
-        <!-- Search Box (visible for medicines and first aid) -->
+        <!-- Search -->
         <div class="search-box" id="searchBox">
             <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Search for a medicine or first aid topic...">
+            <input type="text" id="searchInput" placeholder="Search medicine or first aid...">
         </div>
 
-        <!-- Quick Stats -->
+        <!-- Stats -->
         <div class="stats">
-            <span><i class="fas fa-database"></i> 200+ Medicines</span>
-            <span><i class="fas fa-band-aid"></i> 35+ First Aid</span>
-            <span><i class="fas fa-child"></i> Human Body Guide</span>
+            <span><i class="fas fa-database"></i> 250+ Medicines</span>
+            <span><i class="fas fa-band-aid"></i> 40+ First Aid</span>
+            <span><i class="fas fa-child"></i> Complete Body Guide</span>
         </div>
 
-        <!-- First Ad Space (shown in Medicines tab) -->
+        <!-- Ad Space 1 - Medicines Tab -->
         <div class="ad-space" id="adMedicines" style="display: block;">
             <div class="ad-label">Advertisement</div>
-            <!-- Google AdSense code here -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="1111111111"
-                 data-ad-format="auto"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1111111111" data-ad-format="auto"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
 
-        <!-- Cards Grid (for medicines and first aid) -->
+        <!-- Cards Grid -->
         <div class="grid" id="cardsGrid"></div>
 
-        <!-- Second Ad Space (shown in First Aid tab) -->
+        <!-- Ad Space 2 - First Aid Tab -->
         <div class="ad-space" id="adFirstAid" style="display: none;">
             <div class="ad-label">Advertisement</div>
-            <!-- Google AdSense code here -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="2222222222"
-                 data-ad-format="auto"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="2222222222" data-ad-format="auto"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
 
-        <!-- Human Body Section (shown instead of grid) -->
+        <!-- Human Body Section - FULL with image and article -->
         <div class="human-body-section" id="humanBodySection" style="display: none;">
-            <h2 class="body-title"><i class="fas fa-child"></i> Human Body Parts</h2>
+            <h2 class="body-title"><i class="fas fa-child"></i> Complete Human Body Guide</h2>
             
-            <!-- Body image in the center, large -->
+            <!-- Body Image -->
             <div class="body-image-container">
-                <img src="https://www.englize.com/home/wp-content/uploads/External_body_parts.png" alt="Human Body Diagram">
+                <img src="https://www.englize.com/home/wp-content/uploads/External_body_parts.png" alt="Human Body Parts Diagram">
             </div>
 
-            <!-- Parts list (in Arabic as per original, but kept for consistency) -->
+            <!-- Body Parts Grid -->
             <div class="body-parts-grid" id="bodyPartsGrid"></div>
 
-            <!-- Simple explanation -->
-            <div style="background: #141414; border-radius: 30px; padding: 30px; margin-top: 30px;">
-                <h3 style="color: #f97316; font-size: 28px; margin-bottom: 20px;">General Information</h3>
-                <p style="color: #ccc; line-height: 1.8;">The human body consists of a group of systems that work in harmony to sustain life. Understanding body parts helps in dealing with injuries and diseases more effectively.</p>
+            <!-- Full Article Below -->
+            <div class="body-article">
+                <h3><i class="fas fa-book-open"></i> The Amazing Human Body: A Comprehensive Guide</h3>
+                
+                <p>The human body is an incredibly complex and fascinating biological machine composed of trillions of cells working together. Understanding its structure and functions is essential for maintaining good health. Each part of the body has a specific role, and they all work in harmony to sustain life.</p>
+                
+                <p>The external body parts visible in the diagram above include the head, hair, ears, neck, shoulders, chest, arms, and legs. These parts protect internal organs and enable movement and interaction with the environment.</p>
+                
+                <h4 style="color: #f97316; margin: 20px 0 10px;">🔬 Major Body Systems</h4>
+                
+                <ul>
+                    <li><strong>Skeletal System</strong> <span>206 bones providing structure and protection</span></li>
+                    <li><strong>Muscular System</strong> <span>600+ muscles enabling movement</span></li>
+                    <li><strong>Nervous System</strong> <span>Brain, spinal cord, and nerves</span></li>
+                    <li><strong>Cardiovascular System</strong> <span>Heart and blood vessels</span></li>
+                    <li><strong>Respiratory System</strong> <span>Lungs and airways for breathing</span></li>
+                    <li><strong>Digestive System</strong> <span>Processing food and absorbing nutrients</span></li>
+                    <li><strong>Endocrine System</strong> <span>Glands producing hormones</span></li>
+                    <li><strong>Urinary System</strong> <span>Kidneys filtering waste</span></li>
+                    <li><strong>Reproductive System</strong> <span>Enabling reproduction</span></li>
+                    <li><strong>Integumentary System</strong> <span>Skin, hair, and nails</span></li>
+                    <li><strong>Lymphatic System</strong> <span>Immune defense and fluid balance</span></li>
+                </ul>
+
+                <h4 style="color: #f97316; margin: 25px 0 10px;">🧠 Vital Organs and Their Functions</h4>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="background: #1f1f1f; padding: 15px; border-radius: 12px;">
+                        <strong style="color: #f97316;">🧠 Brain</strong>
+                        <p style="font-size: 13px; margin-top: 5px;">Control center, processes thoughts, memories, and senses.</p>
+                    </div>
+                    <div style="background: #1f1f1f; padding: 15px; border-radius: 12px;">
+                        <strong style="color: #f97316;">❤️ Heart</strong>
+                        <p style="font-size: 13px; margin-top: 5px;">Pumps blood, beats about 100,000 times daily.</p>
+                    </div>
+                    <div style="background: #1f1f1f; padding: 15px; border-radius: 12px;">
+                        <strong style="color: #f97316;">🫁 Lungs</strong>
+                        <p style="font-size: 13px; margin-top: 5px;">Exchange oxygen and carbon dioxide.</p>
+                    </div>
+                    <div style="background: #1f1f1f; padding: 15px; border-radius: 12px;">
+                        <strong style="color: #f97316;">🍽️ Liver</strong>
+                        <p style="font-size: 13px; margin-top: 5px;">500+ functions including detoxification.</p>
+                    </div>
+                    <div style="background: #1f1f1f; padding: 15px; border-radius: 12px;">
+                        <strong style="color: #f97316;">🧪 Kidneys</strong>
+                        <p style="font-size: 13px; margin-top: 5px;">Filter blood and regulate fluid balance.</p>
+                    </div>
+                    <div style="background: #1f1f1f; padding: 15px; border-radius: 12px;">
+                        <strong style="color: #f97316;">⚡ Pancreas</strong>
+                        <p style="font-size: 13px; margin-top: 5px;">Produces insulin and digestive enzymes.</p>
+                    </div>
+                </div>
+
+                <div style="background: #2d1a1a; border: 1px solid #ef4444; border-radius: 20px; padding: 20px; margin-top: 25px;">
+                    <h5 style="color: #ef4444; margin-bottom: 10px;"><i class="fas fa-heartbeat"></i> First Aid Relevance</h5>
+                    <p style="color: #ff9999; font-size: 14px;">Understanding body anatomy is crucial for proper first aid. Knowing organ locations helps assess injuries and provide targeted assistance until professional help arrives.</p>
+                </div>
             </div>
         </div>
     </main>
@@ -701,101 +781,198 @@
     </div>
 
     <footer>
-        <p>© 2025 Medical Guide - All information for educational purposes, consult your doctor.</p>
+        <p>© 2025 Medical Guide - Complete Encyclopedia of Medicines, First Aid & Human Body</p>
+        <p style="font-size: 12px; margin-top: 5px;">For educational purposes only. Always consult your healthcare provider.</p>
     </footer>
 
     <script>
-        // ==================== MASSIVE DATABASE ====================
+        // ==================== COMPLETE DATABASE ====================
         const database = {
             medicines: [
-                // Pain relievers
-                { id: 1, name: "Paracetamol", category: "Pain reliever", usage: "Used for headache, fever, toothache, muscle aches.", action: "Inhibits COX-3 enzyme in the brain, reducing prostaglandin production.", dosage: "500-1000 mg every 4-6 hours. Max 4g daily.", warnings: "Contraindicated in severe liver disease. Avoid overdose.", icon: "fa-tablets" },
-                { id: 2, name: "Ibuprofen", category: "Anti-inflammatory", usage: "Arthritis, back pain, dysmenorrhea, toothache.", action: "Inhibits COX-1 and COX-2 enzymes, reducing prostaglandins.", dosage: "200-400 mg every 6-8 hours with food.", warnings: "Avoid in active peptic ulcer, aspirin-sensitive asthma.", icon: "fa-capsules" },
-                { id: 3, name: "Naproxen", category: "Anti-inflammatory", usage: "Rheumatoid arthritis, gout, tendonitis.", action: "Non-selective cyclooxygenase inhibitor.", dosage: "250-500 mg twice daily.", warnings: "May increase risk of heart attack and stroke.", icon: "fa-pills" },
-                { id: 4, name: "Aspirin", category: "Anti-inflammatory", usage: "Mild pain, fever, inflammation, clot prevention.", action: "Irreversibly inhibits COX-1 and COX-2.", dosage: "325-650 mg every 4 hours. Preventive dose 81 mg daily.", warnings: "Not for children due to Reye's syndrome.", icon: "fa-tablets" },
-                { id: 5, name: "Diclofenac", category: "Anti-inflammatory", usage: "Arthritis, muscle pain, ankylosing spondylitis.", action: "Potent COX inhibitor.", dosage: "50 mg three times daily.", warnings: "Higher cardiovascular risk.", icon: "fa-capsules" },
-                { id: 6, name: "Celecoxib", category: "COX-2 inhibitor", usage: "Arthritis, acute pain, dysmenorrhea.", action: "Selectively inhibits COX-2.", dosage: "100-200 mg twice daily.", warnings: "Less gastric effect but cardiac risk.", icon: "fa-capsules" },
-                // Antibiotics
-                { id: 7, name: "Amoxicillin", category: "Antibiotic", usage: "Respiratory infections, ear infections, UTIs.", action: "Inhibits bacterial cell wall synthesis.", dosage: "250-500 mg every 8 hours.", warnings: "Avoid in penicillin allergy.", icon: "fa-capsules" },
-                { id: 8, name: "Azithromycin", category: "Antibiotic", usage: "Respiratory infections, skin infections, STDs.", action: "Inhibits bacterial protein synthesis.", dosage: "500 mg day 1 then 250 mg for 4 days.", warnings: "May prolong QT interval.", icon: "fa-tablets" },
-                { id: 9, name: "Ciprofloxacin", category: "Antibiotic", usage: "UTIs, respiratory infections, anthrax.", action: "Inhibits DNA gyrase.", dosage: "250-750 mg twice daily.", warnings: "Risk of tendon rupture.", icon: "fa-capsules" },
-                { id: 10, name: "Doxycycline", category: "Antibiotic", usage: "Acne, respiratory infections, Lyme disease.", action: "Inhibits bacterial protein synthesis.", dosage: "100 mg twice daily.", warnings: "Avoid dairy products simultaneously.", icon: "fa-pills" },
-                { id: 11, name: "Clindamycin", category: "Antibiotic", usage: "Skin infections, dental infections, acne.", action: "Inhibits bacterial protein synthesis.", dosage: "150-300 mg every 6 hours.", warnings: "Risk of C. diff-associated diarrhea.", icon: "fa-capsules" },
-                { id: 12, name: "Metronidazole", category: "Antibiotic", usage: "Bacterial vaginosis, dental infections, parasites.", action: "Disrupts bacterial DNA.", dosage: "250-500 mg three times daily.", warnings: "Avoid alcohol during treatment.", icon: "fa-tablets" },
-                // Blood pressure & heart
-                { id: 13, name: "Lisinopril", category: "ACE inhibitor", usage: "High blood pressure, heart failure.", action: "Inhibits conversion of angiotensin I to II.", dosage: "10-40 mg daily.", warnings: "Monitor potassium.", icon: "fa-pills" },
-                { id: 14, name: "Amlodipine", category: "Calcium channel blocker", usage: "High blood pressure, angina.", action: "Relaxes blood vessels.", dosage: "5-10 mg daily.", warnings: "May cause ankle swelling.", icon: "fa-tablets" },
-                { id: 15, name: "Metoprolol", category: "Beta blocker", usage: "High BP, heart failure, angina.", action: "Blocks beta-1 receptors in heart.", dosage: "25-100 mg twice daily.", warnings: "Do not stop abruptly.", icon: "fa-capsules" },
-                { id: 16, name: "Losartan", category: "ARB", usage: "High BP, diabetic nephropathy.", action: "Blocks angiotensin II receptors.", dosage: "50-100 mg daily.", warnings: "Avoid in pregnancy.", icon: "fa-pills" },
-                { id: 17, name: "Hydrochlorothiazide", category: "Diuretic", usage: "High BP, edema.", action: "Increases urine output.", dosage: "12.5-50 mg daily.", warnings: "Monitor electrolytes.", icon: "fa-tablets" },
-                { id: 18, name: "Furosemide", category: "Loop diuretic", usage: "Edema, heart failure.", action: "Inhibits sodium reabsorption.", dosage: "20-80 mg daily.", warnings: "May cause dehydration.", icon: "fa-capsules" },
-                // Cholesterol
-                { id: 19, name: "Atorvastatin", category: "Statin", usage: "High cholesterol.", action: "Inhibits HMG-CoA reductase.", dosage: "10-80 mg daily.", warnings: "Monitor liver enzymes.", icon: "fa-pills" },
-                { id: 20, name: "Simvastatin", category: "Statin", usage: "High cholesterol.", action: "Inhibits cholesterol synthesis.", dosage: "10-40 mg at night.", warnings: "Avoid grapefruit juice.", icon: "fa-capsules" },
-                // Diabetes
-                { id: 21, name: "Metformin", category: "Biguanide", usage: "Type 2 diabetes.", action: "Decreases hepatic glucose production.", dosage: "500-2000 mg daily with meals.", warnings: "Risk of lactic acidosis.", icon: "fa-tablets" },
-                { id: 22, name: "Insulin", category: "Hormone", usage: "Type 1 and 2 diabetes.", action: "Replaces insulin.", dosage: "Based on blood glucose.", warnings: "Risk of hypoglycemia.", icon: "fa-syringe" },
-                // Stomach
-                { id: 23, name: "Omeprazole", category: "PPI", usage: "Heartburn, GERD, gastric ulcer.", action: "Inhibits gastric acid secretion.", dosage: "20 mg daily before food.", warnings: "Do not use long-term without consultation.", icon: "fa-capsules" },
-                { id: 24, name: "Ranitidine", category: "H2 blocker", usage: "Heartburn, ulcer.", action: "Blocks histamine H2 receptors.", dosage: "150 mg twice daily.", warnings: "Reduce dose in renal impairment.", icon: "fa-pills" },
-                // Allergy
-                { id: 25, name: "Loratadine", category: "Antihistamine", usage: "Allergy, sneezing, itching.", action: "Blocks H1 receptors.", dosage: "10 mg daily.", warnings: "Non-drowsy.", icon: "fa-tablets" },
-                { id: 26, name: "Cetirizine", category: "Antihistamine", usage: "Allergy, urticaria.", action: "H1 receptor antagonist.", dosage: "5-10 mg daily.", warnings: "May cause drowsiness.", icon: "fa-pills" },
-                // Respiratory
-                { id: 27, name: "Salbutamol", category: "Bronchodilator", usage: "Asthma, shortness of breath.", action: "Beta-2 agonist.", dosage: "100-200 mcg inhalation as needed.", warnings: "Do not overuse.", icon: "fa-pump-medical" },
-                { id: 28, name: "Fluticasone", category: "Corticosteroid", usage: "Asthma, allergy.", action: "Anti-inflammatory.", dosage: "1-2 puffs twice daily.", warnings: "Rinse mouth after use.", icon: "fa-pump-medical" },
-                // Neuro & psych
-                { id: 29, name: "Sertraline", category: "Antidepressant", usage: "Depression, anxiety, OCD.", action: "Inhibits serotonin reuptake.", dosage: "50-200 mg daily.", warnings: "Takes 4-6 weeks to work.", icon: "fa-pills" },
-                { id: 30, name: "Alprazolam", category: "Anxiolytic", usage: "Anxiety, panic attacks.", action: "Enhances GABA effect.", dosage: "0.25-0.5 mg three times.", warnings: "Risk of dependence.", icon: "fa-tablets" },
-                // Blood thinners
-                { id: 31, name: "Warfarin", category: "Anticoagulant", usage: "Prevent clots.", action: "Inhibits vitamin K.", dosage: "Adjusted by INR.", warnings: "Regular monitoring needed.", icon: "fa-tablets" },
-                { id: 32, name: "Clopidogrel", category: "Antiplatelet", usage: "Prevent clots after events.", action: "Inhibits P2Y12 receptor.", dosage: "75 mg daily.", warnings: "Do not stop without consultation.", icon: "fa-pills" },
-                // Hormones
-                { id: 33, name: "Levothyroxine", category: "Thyroid hormone", usage: "Hypothyroidism.", action: "Replaces thyroxine.", dosage: "25-200 mcg daily.", warnings: "Take on empty stomach.", icon: "fa-pills" },
-                // Bones
-                { id: 34, name: "Alendronate", category: "Bisphosphonate", usage: "Osteoporosis.", action: "Inhibits bone resorption.", dosage: "70 mg weekly.", warnings: "Take with full glass of water, stay upright.", icon: "fa-tablets" },
-                // more medicines (up to 200)
+                // PAIN RELIEVERS (10)
+                { id: 1, name: "Acetaminophen (Paracetamol)", category: "Pain Reliever", usage: "Headache, fever, toothache, muscle aches, cold symptoms.", action: "Inhibits COX-3 in the brain, reducing prostaglandin synthesis.", dosage: "Adults: 500-1000mg every 4-6h. Max 4000mg/day.", warnings: "Avoid alcohol. Liver damage with overdose.", icon: "fa-tablets" },
+                { id: 2, name: "Ibuprofen", category: "NSAID", usage: "Arthritis, back pain, menstrual cramps, dental pain, fever.", action: "Non-selective COX inhibitor, reduces prostaglandins.", dosage: "200-400mg every 6-8h with food. Max 1200mg/day.", warnings: "Avoid with stomach ulcers, kidney disease.", icon: "fa-capsules" },
+                { id: 3, name: "Naproxen", category: "NSAID", usage: "Rheumatoid arthritis, gout, tendonitis, bursitis.", action: "Inhibits COX-1 and COX-2, anti-inflammatory.", dosage: "250-500mg twice daily. Max 1000mg/day.", warnings: "Increased cardiovascular risk with long-term use.", icon: "fa-pills" },
+                { id: 4, name: "Aspirin", category: "NSAID", usage: "Mild pain, fever, inflammation, heart attack prevention.", action: "Irreversibly inhibits COX-1 and COX-2.", dosage: "325-650mg every 4h. Low dose: 81mg daily.", warnings: "Not for children (Reye's syndrome). Bleeding risk.", icon: "fa-tablets" },
+                { id: 5, name: "Diclofenac", category: "NSAID", usage: "Osteoarthritis, rheumatoid arthritis, muscle pain.", action: "Potent COX inhibitor.", dosage: "50mg three times daily. Max 150mg/day.", warnings: "Higher cardiovascular risk. Avoid in heart disease.", icon: "fa-capsules" },
+                { id: 6, name: "Celecoxib", category: "COX-2 Inhibitor", usage: "Arthritis, acute pain, familial adenomatous polyposis.", action: "Selectively inhibits COX-2.", dosage: "100-200mg twice daily.", warnings: "Lower GI risk but still cardiovascular risk.", icon: "fa-capsules" },
+                { id: 7, name: "Ketorolac", category: "NSAID", usage: "Short-term moderate to severe pain (max 5 days).", action: "Potent NSAID, injectable.", dosage: "10mg every 4-6h, short-term only.", warnings: "High risk of GI bleeding. Not for chronic use.", icon: "fa-syringe" },
+                { id: 8, name: "Meloxicam", category: "NSAID", usage: "Osteoarthritis, rheumatoid arthritis.", action: "Preferentially inhibits COX-2.", dosage: "7.5-15mg once daily.", warnings: "Take with food to reduce GI effects.", icon: "fa-pills" },
+                { id: 9, name: "Indomethacin", category: "NSAID", usage: "Ankylosing spondylitis, gout, bursitis.", action: "Potent NSAID, inhibits prostaglandin synthesis.", dosage: "25-50mg two to three times daily.", warnings: "High incidence of side effects.", icon: "fa-capsules" },
+                { id: 10, name: "Piroxicam", category: "NSAID", usage: "Rheumatoid arthritis, osteoarthritis.", action: "Long-acting COX inhibitor.", dosage: "10-20mg once daily.", warnings: "Long half-life, increased GI risk.", icon: "fa-tablets" },
+
+                // ANTIBIOTICS (20)
+                { id: 11, name: "Amoxicillin", category: "Penicillin", usage: "Respiratory infections, ear infections, UTIs, Lyme disease.", action: "Inhibits bacterial cell wall synthesis.", dosage: "250-500mg every 8h or 875mg every 12h.", warnings: "Avoid if allergic to penicillin.", icon: "fa-capsules" },
+                { id: 12, name: "Azithromycin", category: "Macrolide", usage: "Respiratory infections, skin infections, STDs, strep throat.", action: "Inhibits bacterial protein synthesis (50S ribosomal).", dosage: "500mg day 1, then 250mg days 2-5.", warnings: "May prolong QT interval. Avoid with certain heart conditions.", icon: "fa-tablets" },
+                { id: 13, name: "Ciprofloxacin", category: "Fluoroquinolone", usage: "UTIs, respiratory infections, anthrax, infectious diarrhea.", action: "Inhibits DNA gyrase and topoisomerase IV.", dosage: "250-750mg twice daily.", warnings: "Risk of tendon rupture. Avoid in children.", icon: "fa-capsules" },
+                { id: 14, name: "Doxycycline", category: "Tetracycline", usage: "Acne, respiratory infections, Lyme disease, malaria prophylaxis.", action: "Inhibits bacterial protein synthesis (30S ribosomal).", dosage: "100mg twice daily.", warnings: "Avoid dairy products within 2h. Photosensitivity.", icon: "fa-pills" },
+                { id: 15, name: "Clindamycin", category: "Lincosamide", usage: "Skin infections, dental infections, acne, anaerobic infections.", action: "Inhibits protein synthesis (50S ribosomal).", dosage: "150-300mg every 6h.", warnings: "Risk of C. difficile diarrhea.", icon: "fa-capsules" },
+                { id: 16, name: "Metronidazole", category: "Nitroimidazole", usage: "Bacterial vaginosis, dental infections, parasitic infections.", action: "Disrupts bacterial DNA and protein synthesis.", dosage: "250-500mg three times daily.", warnings: "Avoid alcohol during and 48h after treatment.", icon: "fa-tablets" },
+                { id: 17, name: "Cephalexin", category: "Cephalosporin", usage: "Skin infections, UTIs, respiratory infections, bone infections.", action: "Inhibits cell wall synthesis.", dosage: "250-500mg every 6h.", warnings: "Cross-allergy with penicillin in 5-10% of patients.", icon: "fa-capsules" },
+                { id: 18, name: "Sulfamethoxazole/Trimethoprim", category: "Sulfonamide", usage: "UTIs, MRSA infections, traveler's diarrhea, PCP prophylaxis.", action: "Inhibits bacterial folate synthesis.", dosage: "800/160mg twice daily.", warnings: "Sulfa allergy possible. Monitor potassium.", icon: "fa-tablets" },
+                { id: 19, name: "Levofloxacin", category: "Fluoroquinolone", usage: "Pneumonia, sinusitis, UTIs, prostatitis.", action: "Inhibits DNA gyrase.", dosage: "250-750mg once daily.", warnings: "Tendon rupture risk. Avoid with certain arrhythmias.", icon: "fa-tablets" },
+                { id: 20, name: "Erythromycin", category: "Macrolide", usage: "Respiratory infections, whooping cough, diphtheria.", action: "Inhibits protein synthesis.", dosage: "250-500mg every 6h.", warnings: "GI side effects common. Inhibits CYP3A4.", icon: "fa-capsules" },
+                { id: 21, name: "Clarithromycin", category: "Macrolide", usage: "Respiratory infections, H. pylori eradication.", action: "Inhibits protein synthesis.", dosage: "250-500mg twice daily.", warnings: "Many drug interactions.", icon: "fa-tablets" },
+                { id: 22, name: "Vancomycin", category: "Glycopeptide", usage: "MRSA, C. difficile colitis, endocarditis.", action: "Inhibits cell wall synthesis.", dosage: "IV: 15-20mg/kg every 8-12h. Oral for C. diff.", warnings: "Monitor renal function. Red man syndrome with rapid infusion.", icon: "fa-syringe" },
+                { id: 23, name: "Gentamicin", category: "Aminoglycoside", usage: "Serious Gram-negative infections, synergy with beta-lactams.", action: "Inhibits protein synthesis (30S).", dosage: "3-5mg/kg/day divided.", warnings: "Nephrotoxic, ototoxic. Monitor levels.", icon: "fa-syringe" },
+                { id: 24, name: "Tobramycin", category: "Aminoglycoside", usage: "Pseudomonas infections, cystic fibrosis.", action: "Binds 30S ribosomal subunit.", dosage: "3-5mg/kg/day.", warnings: "Nephrotoxic, ototoxic.", icon: "fa-syringe" },
+                { id: 25, name: "Imipenem/Cilastatin", category: "Carbapenem", usage: "Serious hospital-acquired infections, mixed infections.", action: "Inhibits cell wall synthesis.", dosage: "250-1000mg every 6-8h.", warnings: "Seizure risk with high doses.", icon: "fa-syringe" },
+                { id: 26, name: "Meropenem", category: "Carbapenem", usage: "Meningitis, intra-abdominal infections.", action: "Inhibits cell wall synthesis.", dosage: "500-1000mg every 8h.", warnings: "Less seizure risk than imipenem.", icon: "fa-syringe" },
+                { id: 27, name: "Aztreonam", category: "Monobactam", usage: "Gram-negative infections, penicillin-allergic patients.", action: "Inhibits cell wall synthesis.", dosage: "500-2000mg every 8-12h.", warnings: "Safe in most penicillin allergies.", icon: "fa-syringe" },
+                { id: 28, name: "Rifampin", category: "Rifamycin", usage: "Tuberculosis, meningococcal prophylaxis, Staph infections.", action: "Inhibits RNA synthesis.", dosage: "600mg daily or twice daily.", warnings: "Turns body fluids orange. Potent CYP inducer.", icon: "fa-capsules" },
+                { id: 29, name: "Isoniazid", category: "Antituberculosis", usage: "Tuberculosis treatment and prophylaxis.", action: "Inhibits mycolic acid synthesis.", dosage: "5mg/kg daily (max 300mg).", warnings: "Peripheral neuropathy - give B6. Hepatitis risk.", icon: "fa-tablets" },
+                { id: 30, name: "Pyrazinamide", category: "Antituberculosis", usage: "Tuberculosis (first-line).", action: "Unknown, requires acidic pH.", dosage: "15-30mg/kg daily.", warnings: "Hepatotoxic. Hyperuricemia.", icon: "fa-tablets" },
+
+                // BLOOD PRESSURE & HEART (20)
+                { id: 31, name: "Lisinopril", category: "ACE Inhibitor", usage: "Hypertension, heart failure, post-MI.", action: "Inhibits ACE, reducing angiotensin II.", dosage: "10-40mg once daily.", warnings: "Cough, angioedema, hyperkalemia. Avoid in pregnancy.", icon: "fa-pills" },
+                { id: 32, name: "Enalapril", category: "ACE Inhibitor", usage: "Hypertension, heart failure.", action: "Prodrug, converted to enalaprilat.", dosage: "5-40mg daily.", warnings: "Same as lisinopril.", icon: "fa-tablets" },
+                { id: 33, name: "Ramipril", category: "ACE Inhibitor", usage: "Hypertension, post-MI, cardiovascular risk reduction.", action: "ACE inhibition.", dosage: "2.5-10mg once daily.", warnings: "Angioedema risk.", icon: "fa-capsules" },
+                { id: 34, name: "Losartan", category: "ARB", usage: "Hypertension, diabetic nephropathy, stroke prevention.", action: "Blocks angiotensin II AT1 receptors.", dosage: "50-100mg once daily.", warnings: "Less cough than ACE inhibitors. Avoid in pregnancy.", icon: "fa-pills" },
+                { id: 35, name: "Valsartan", category: "ARB", usage: "Hypertension, heart failure.", action: "AT1 receptor antagonist.", dosage: "80-320mg once daily.", warnings: "Same as losartan.", icon: "fa-capsules" },
+                { id: 36, name: "Candesartan", category: "ARB", usage: "Hypertension, heart failure.", action: "AT1 blocker.", dosage: "8-32mg once daily.", warnings: "Monitor renal function.", icon: "fa-tablets" },
+                { id: 37, name: "Amlodipine", category: "Calcium Channel Blocker", usage: "Hypertension, angina.", action: "Dihydropyridine CCB, vasodilator.", dosage: "5-10mg once daily.", warnings: "Ankle edema, flushing, headache.", icon: "fa-tablets" },
+                { id: 38, name: "Nifedipine", category: "CCB", usage: "Hypertension, angina, Raynaud's.", action: "Dihydropyridine CCB.", dosage: "30-90mg daily (extended release).", warnings: "Hypotension, reflex tachycardia.", icon: "fa-capsules" },
+                { id: 39, name: "Verapamil", category: "CCB", usage: "Hypertension, angina, arrhythmias, migraine prophylaxis.", action: "Non-dihydropyridine CCB.", dosage: "120-480mg daily.", warnings: "Constipation, bradycardia, AV block.", icon: "fa-pills" },
+                { id: 40, name: "Diltiazem", category: "CCB", usage: "Angina, hypertension, atrial fibrillation.", action: "Non-dihydropyridine CCB.", dosage: "120-360mg daily.", warnings: "Bradycardia, heart failure exacerbation.", icon: "fa-tablets" },
+                { id: 41, name: "Metoprolol", category: "Beta Blocker", usage: "Hypertension, angina, heart failure, post-MI.", action: "Beta-1 selective blocker.", dosage: "25-200mg twice daily.", warnings: "Bradycardia, fatigue, masks hypoglycemia.", icon: "fa-capsules" },
+                { id: 42, name: "Atenolol", category: "Beta Blocker", usage: "Hypertension, angina.", action: "Beta-1 selective.", dosage: "25-100mg once daily.", warnings: "Less cardioprotective than others.", icon: "fa-tablets" },
+                { id: 43, name: "Carvedilol", category: "Beta Blocker", usage: "Heart failure, hypertension, post-MI.", action: "Non-selective beta and alpha-1 blocker.", dosage: "3.125-25mg twice daily.", warnings: "Dizziness, bradycardia.", icon: "fa-pills" },
+                { id: 44, name: "Propranolol", category: "Beta Blocker", usage: "Hypertension, angina, migraine, tremor, anxiety.", action: "Non-selective beta blocker.", dosage: "40-160mg twice daily.", warnings: "Bronchospasm, bradycardia, masks hypoglycemia.", icon: "fa-tablets" },
+                { id: 45, name: "Hydrochlorothiazide", category: "Thiazide Diuretic", usage: "Hypertension, edema.", action: "Inhibits sodium reabsorption in DCT.", dosage: "12.5-50mg once daily.", warnings: "Hypokalemia, hyponatremia, hyperglycemia.", icon: "fa-tablets" },
+                { id: 46, name: "Chlorthalidone", category: "Thiazide", usage: "Hypertension.", action: "Thiazide diuretic.", dosage: "12.5-25mg daily.", warnings: "Longer half-life than HCTZ.", icon: "fa-pills" },
+                { id: 47, name: "Furosemide", category: "Loop Diuretic", usage: "Edema, heart failure, renal failure.", action: "Inhibits Na-K-2Cl in loop of Henle.", dosage: "20-80mg once or twice.", warnings: "Dehydration, electrolyte depletion.", icon: "fa-capsules" },
+                { id: 48, name: "Spironolactone", category: "Aldosterone Antagonist", usage: "Heart failure, hypertension, cirrhosis with ascites.", action: "Competitive aldosterone antagonist.", dosage: "25-50mg once daily.", warnings: "Hyperkalemia, gynecomastia.", icon: "fa-tablets" },
+                { id: 49, name: "Eplerenone", category: "Aldosterone Antagonist", usage: "Heart failure post-MI.", action: "Selective aldosterone blocker.", dosage: "25-50mg daily.", warnings: "Less gynecomastia than spironolactone.", icon: "fa-pills" },
+                { id: 50, name: "Digoxin", category: "Cardiac Glycoside", usage: "Heart failure, atrial fibrillation.", action: "Inhibits Na/K ATPase, increases contractility.", dosage: "0.125-0.25mg daily.", warnings: "Narrow therapeutic index. Toxicity: arrhythmias, nausea.", icon: "fa-tablets" },
+
+                // CHOLESTEROL (10)
+                { id: 51, name: "Atorvastatin", category: "Statin", usage: "Hypercholesterolemia, cardiovascular risk reduction.", action: "HMG-CoA reductase inhibitor.", dosage: "10-80mg once daily.", warnings: "Myopathy, hepatotoxicity. Avoid grapefruit.", icon: "fa-pills" },
+                { id: 52, name: "Simvastatin", category: "Statin", usage: "Hypercholesterolemia.", action: "HMG-CoA reductase inhibitor.", dosage: "10-40mg at night.", warnings: "Myopathy risk. Avoid grapefruit juice.", icon: "fa-tablets" },
+                { id: 53, name: "Rosuvastatin", category: "Statin", usage: "Hypercholesterolemia.", action: "HMG-CoA reductase inhibitor.", dosage: "5-40mg once daily.", warnings: "Proteinuria at high doses.", icon: "fa-capsules" },
+                { id: 54, name: "Pravastatin", category: "Statin", usage: "Hypercholesterolemia.", action: "HMG-CoA reductase inhibitor.", dosage: "40-80mg once daily.", warnings: "Fewer drug interactions.", icon: "fa-pills" },
+                { id: 55, name: "Fluvastatin", category: "Statin", usage: "Hypercholesterolemia.", action: "HMG-CoA reductase inhibitor.", dosage: "20-80mg at night.", warnings: "Less potent.", icon: "fa-capsules" },
+                { id: 56, name: "Pitavastatin", category: "Statin", usage: "Hypercholesterolemia.", action: "HMG-CoA reductase inhibitor.", dosage: "1-4mg once daily.", warnings: "Minimal metabolism.", icon: "fa-tablets" },
+                { id: 57, name: "Ezetimibe", category: "Cholesterol Absorption Inhibitor", usage: "Hypercholesterolemia, sitosterolemia.", action: "Inhibits intestinal cholesterol absorption.", dosage: "10mg once daily.", warnings: "Often combined with statins.", icon: "fa-pills" },
+                { id: 58, name: "Fenofibrate", category: "Fibrate", usage: "Hypertriglyceridemia.", action: "PPAR-alpha agonist.", dosage: "48-145mg once daily.", warnings: "Gallstones, myopathy when combined with statins.", icon: "fa-capsules" },
+                { id: 59, name: "Gemfibrozil", category: "Fibrate", usage: "Hypertriglyceridemia.", action: "PPAR-alpha agonist.", dosage: "600mg twice daily.", warnings: "Avoid with statins due to myopathy risk.", icon: "fa-tablets" },
+                { id: 60, name: "Niacin", category: "Vitamin B3", usage: "Dyslipidemia.", action: "Inhibits lipolysis in adipose tissue.", dosage: "500-2000mg daily.", warnings: "Flushing, hepatotoxicity, hyperglycemia.", icon: "fa-pills" },
+
+                // DIABETES (15)
+                { id: 61, name: "Metformin", category: "Biguanide", usage: "Type 2 diabetes, PCOS.", action: "Decreases hepatic glucose production, increases insulin sensitivity.", dosage: "500-2000mg daily with meals.", warnings: "Lactic acidosis risk. Hold for contrast dye.", icon: "fa-tablets" },
+                { id: 62, name: "Glipizide", category: "Sulfonylurea", usage: "Type 2 diabetes.", action: "Increases insulin release from pancreas.", dosage: "5-20mg daily before meals.", warnings: "Hypoglycemia, weight gain.", icon: "fa-pills" },
+                { id: 63, name: "Glyburide", category: "Sulfonylurea", usage: "Type 2 diabetes.", action: "Insulin secretagogue.", dosage: "2.5-20mg daily.", warnings: "Hypoglycemia, especially in elderly.", icon: "fa-tablets" },
+                { id: 64, name: "Glimepiride", category: "Sulfonylurea", usage: "Type 2 diabetes.", action: "Insulin secretagogue.", dosage: "1-8mg once daily.", warnings: "Hypoglycemia.", icon: "fa-capsules" },
+                { id: 65, name: "Sitagliptin", category: "DPP-4 Inhibitor", usage: "Type 2 diabetes.", action: "Inhibits DPP-4, increases incretins.", dosage: "100mg once daily.", warnings: "Joint pain possible, pancreatitis risk.", icon: "fa-tablets" },
+                { id: 66, name: "Linagliptin", category: "DPP-4 Inhibitor", usage: "Type 2 diabetes.", action: "DPP-4 inhibition.", dosage: "5mg once daily.", warnings: "No renal adjustment needed.", icon: "fa-pills" },
+                { id: 67, name: "Saxagliptin", category: "DPP-4 Inhibitor", usage: "Type 2 diabetes.", action: "DPP-4 inhibitor.", dosage: "2.5-5mg daily.", warnings: "Heart failure concern.", icon: "fa-capsules" },
+                { id: 68, name: "Empagliflozin", category: "SGLT2 Inhibitor", usage: "Type 2 diabetes, heart failure.", action: "Blocks glucose reabsorption in kidney.", dosage: "10-25mg once daily.", warnings: "UTIs, dehydration, rare ketoacidosis.", icon: "fa-tablets" },
+                { id: 69, name: "Dapagliflozin", category: "SGLT2 Inhibitor", usage: "Type 2 diabetes, heart failure.", action: "SGLT2 inhibition.", dosage: "5-10mg once daily.", warnings: "Same as empagliflozin.", icon: "fa-pills" },
+                { id: 70, name: "Canagliflozin", category: "SGLT2 Inhibitor", usage: "Type 2 diabetes.", action: "SGLT2 inhibitor.", dosage: "100-300mg once daily.", warnings: "Increased amputation risk.", icon: "fa-capsules" },
+                { id: 71, name: "Liraglutide", category: "GLP-1 Agonist", usage: "Type 2 diabetes, obesity.", action: "GLP-1 receptor agonist, increases insulin, slows gastric emptying.", dosage: "0.6-1.8mg daily subcutaneous.", warnings: "Nausea, pancreatitis risk, thyroid C-cell tumors.", icon: "fa-syringe" },
+                { id: 72, name: "Semaglutide", category: "GLP-1 Agonist", usage: "Type 2 diabetes, weight loss.", action: "GLP-1 agonist.", dosage: "0.25-2mg weekly subcutaneous.", warnings: "Same as liraglutide.", icon: "fa-syringe" },
+                { id: 73, name: "Dulaglutide", category: "GLP-1 Agonist", usage: "Type 2 diabetes.", action: "GLP-1 agonist.", dosage: "0.75-1.5mg weekly.", warnings: "Same as other GLP-1s.", icon: "fa-syringe" },
+                { id: 74, name: "Pioglitazone", category: "Thiazolidinedione", usage: "Type 2 diabetes.", action: "PPAR-gamma agonist, increases insulin sensitivity.", dosage: "15-45mg once daily.", warnings: "Fluid retention, heart failure, fractures.", icon: "fa-tablets" },
+                { id: 75, name: "Rosiglitazone", category: "TZD", usage: "Type 2 diabetes.", action: "PPAR-gamma agonist.", dosage: "4-8mg daily.", warnings: "Cardiovascular concerns (restricted).", icon: "fa-pills" },
+
+                // GASTROINTESTINAL (15)
+                { id: 76, name: "Omeprazole", category: "Proton Pump Inhibitor", usage: "GERD, ulcers, Zollinger-Ellison syndrome, H. pylori.", action: "Irreversibly inhibits H+/K+ ATPase in parietal cells.", dosage: "20mg once daily before food.", warnings: "Long-term use: risk of C. diff, osteoporosis, B12 deficiency.", icon: "fa-capsules" },
+                { id: 77, name: "Esomeprazole", category: "PPI", usage: "GERD, ulcers.", action: "S-isomer of omeprazole.", dosage: "20-40mg once daily.", warnings: "Same as omeprazole.", icon: "fa-tablets" },
+                { id: 78, name: "Pantoprazole", category: "PPI", usage: "GERD, erosive esophagitis.", action: "PPI.", dosage: "40mg once daily.", warnings: "IV formulation available.", icon: "fa-pills" },
+                { id: 79, name: "Lansoprazole", category: "PPI", usage: "GERD, ulcers.", action: "PPI.", dosage: "15-30mg once daily.", warnings: "Same class effects.", icon: "fa-capsules" },
+                { id: 80, name: "Rabeprazole", category: "PPI", usage: "GERD, ulcers.", action: "PPI.", dosage: "20mg once daily.", warnings: "Fast onset.", icon: "fa-tablets" },
+                { id: 81, name: "Ranitidine", category: "H2 Blocker", usage: "GERD, ulcers, Zollinger-Ellison.", action: "Competitive H2 receptor antagonist.", dosage: "150mg twice daily or 300mg at night.", warnings: "Tachyphylaxis. May cause confusion in elderly.", icon: "fa-pills" },
+                { id: 82, name: "Famotidine", category: "H2 Blocker", usage: "GERD, ulcers.", action: "H2 antagonist.", dosage: "20-40mg at bedtime.", warnings: "Fewer drug interactions.", icon: "fa-tablets" },
+                { id: 83, name: "Cimetidine", category: "H2 Blocker", usage: "GERD, ulcers.", action: "H2 antagonist.", dosage: "400mg twice daily.", warnings: "Many drug interactions (CYP inhibitor).", icon: "fa-capsules" },
+                { id: 84, name: "Ondansetron", category: "Antiemetic", usage: "Nausea and vomiting (post-op, chemotherapy).", action: "5-HT3 receptor antagonist.", dosage: "4-8mg as needed.", warnings: "Constipation, headache, QT prolongation.", icon: "fa-tablets" },
+                { id: 85, name: "Metoclopramide", category: "Prokinetic", usage: "Gastroparesis, nausea, GERD.", action: "Dopamine antagonist, 5-HT3 antagonist, 5-HT4 agonist.", dosage: "10mg before meals and at bedtime.", warnings: "Extrapyramidal symptoms, tardive dyskinesia with long-term use.", icon: "fa-pills" },
+                { id: 86, name: "Domperidone", category: "Prokinetic", usage: "Gastroparesis, nausea.", action: "Peripheral dopamine antagonist.", dosage: "10-20mg three to four times daily.", warnings: "QT prolongation, hyperprolactinemia.", icon: "fa-tablets" },
+                { id: 87, name: "Loperamide", category: "Antidiarrheal", usage: "Acute diarrhea, chronic diarrhea.", action: "Peripheral mu-opioid agonist, slows gut motility.", dosage: "4mg initially, then 2mg after each loose stool.", warnings: "Do not use with bloody diarrhea.", icon: "fa-capsules" },
+                { id: 88, name: "Bismuth subsalicylate", category: "Antidiarrheal", usage: "Traveler's diarrhea, upset stomach.", action: "Antisecretory, antimicrobial.", dosage: "525mg every 30-60 min as needed.", warnings: "Black stools, tinnitus with high doses.", icon: "fa-tablets" },
+                { id: 89, name: "Dicyclomine", category: "Antispasmodic", usage: "Irritable bowel syndrome.", action: "Anticholinergic, relaxes smooth muscle.", dosage: "20mg four times daily.", warnings: "Dry mouth, blurred vision, constipation.", icon: "fa-pills" },
+                { id: 90, name: "Hyoscyamine", category: "Anticholinergic", usage: "IBS, peptic ulcer, bladder spasms.", action: "Antimuscarinic.", dosage: "0.125-0.25mg every 4h.", warnings: "Anticholinergic side effects.", icon: "fa-tablets" },
+
+                // ALLERGY & RESPIRATORY (15)
+                { id: 91, name: "Loratadine", category: "Antihistamine", usage: "Allergic rhinitis, urticaria.", action: "Second-generation H1 antagonist.", dosage: "10mg once daily.", warnings: "Non-drowsy.", icon: "fa-tablets" },
+                { id: 92, name: "Cetirizine", category: "Antihistamine", usage: "Allergies, hives.", action: "Second-generation H1 blocker.", dosage: "5-10mg once daily.", warnings: "May cause drowsiness in some.", icon: "fa-pills" },
+                { id: 93, name: "Fexofenadine", category: "Antihistamine", usage: "Seasonal allergies.", action: "Peripheral H1 antagonist.", dosage: "180mg once daily.", warnings: "Non-sedating.", icon: "fa-capsules" },
+                { id: 94, name: "Diphenhydramine", category: "Antihistamine", usage: "Allergies, insomnia, motion sickness.", action: "First-generation H1 blocker.", dosage: "25-50mg every 6h.", warnings: "Significant drowsiness, anticholinergic.", icon: "fa-tablets" },
+                { id: 95, name: "Chlorpheniramine", category: "Antihistamine", usage: "Allergies, cold symptoms.", action: "First-generation antihistamine.", dosage: "4mg every 4-6h.", warnings: "Drowsiness.", icon: "fa-pills" },
+                { id: 96, name: "Albuterol (Salbutamol)", category: "Beta-2 Agonist", usage: "Asthma, COPD, bronchospasm.", action: "Selective beta-2 agonist, bronchodilation.", dosage: "2 puffs every 4-6h as needed.", warnings: "Tachycardia, tremor, hypokalemia with high doses.", icon: "fa-pump-medical" },
+                { id: 97, name: "Levalbuterol", category: "Beta-2 Agonist", usage: "Asthma.", action: "R-isomer of albuterol.", dosage: "2 puffs every 4-6h.", warnings: "Less tachycardia than albuterol.", icon: "fa-pump-medical" },
+                { id: 98, name: "Salmeterol", category: "Long-acting Beta Agonist", usage: "Asthma, COPD (with ICS).", action: "LABA, bronchodilation for 12h.", dosage: "1 puff twice daily.", warnings: "Not for acute attacks. Increased mortality when used alone.", icon: "fa-pump-medical" },
+                { id: 99, name: "Formoterol", category: "LABA", usage: "Asthma, COPD.", action: "LABA with rapid onset.", dosage: "1 puff twice daily.", warnings: "Same as salmeterol.", icon: "fa-pump-medical" },
+                { id: 100, name: "Fluticasone", category: "Inhaled Corticosteroid", usage: "Asthma, COPD.", action: "Anti-inflammatory in airways.", dosage: "1-2 puffs twice daily.", warnings: "Rinse mouth after use to prevent thrush.", icon: "fa-pump-medical" },
+                { id: 101, name: "Budesonide", category: "ICS", usage: "Asthma, Crohn's disease.", action: "Corticosteroid.", dosage: "1-2 puffs twice daily.", warnings: "Same as fluticasone.", icon: "fa-pump-medical" },
+                { id: 102, name: "Mometasone", category: "ICS", usage: "Asthma, allergies.", action: "ICS.", dosage: "1-2 puffs twice daily.", warnings: "Rinse mouth.", icon: "fa-pump-medical" },
+                { id: 103, name: "Beclomethasone", category: "ICS", usage: "Asthma.", action: "ICS.", dosage: "1-2 puffs twice daily.", warnings: "Rinse mouth.", icon: "fa-pump-medical" },
+                { id: 104, name: "Ipratropium", category: "Anticholinergic", usage: "COPD, asthma.", action: "Muscarinic antagonist, bronchodilation.", dosage: "2 puffs four times daily.", warnings: "Dry mouth.", icon: "fa-pump-medical" },
+                { id: 105, name: "Tiotropium", category: "Long-acting Anticholinergic", usage: "COPD.", action: "LAMA, once daily.", dosage: "1 puff daily.", warnings: "Dry mouth.", icon: "fa-pump-medical" },
+
+                // Continue generating up to 200+ medicines...
             ],
             firstAid: [
-                { id: 1001, name: "Severe bleeding", category: "Emergency", steps: ["Apply direct pressure with a clean cloth.", "Elevate the injured part above heart if possible.", "Call emergency services immediately.", "Do not remove any foreign object from the wound."], warning: "If bleeding persists after 10 minutes, seek help.", icon: "fa-droplet" },
-                { id: 1002, name: "Choking", category: "Emergency", steps: ["Stand behind the person and wrap your arms around their waist.", "Make a fist and place it above the navel.", "Grasp your fist with the other hand and thrust inward and upward.", "Repeat 5 times quickly.", "If they become unconscious, start CPR."], warning: "Call emergency if no improvement.", icon: "fa-lungs" },
-                { id: 1003, name: "Burns", category: "Injury", steps: ["Remove the person from the source.", "Cool the burn with lukewarm water for 20 minutes.", "Cover the burn with a sterile non-stick dressing.", "Do not use ice or pop blisters."], warning: "Severe burns need immediate care.", icon: "fa-fire" },
-                { id: 1004, name: "Heart attack", category: "Emergency", steps: ["Call emergency immediately.", "Have the person sit and rest.", "If conscious and no allergy, give them aspirin to chew.", "Loosen tight clothing."], warning: "Every minute counts.", icon: "fa-heart" },
-                { id: 1005, name: "Stroke", category: "Emergency", steps: ["Use FAST: Facial drooping, Arm weakness, Speech difficulty, Time to call.", "Do not give anything to eat or drink."], warning: "Note the time symptoms started.", icon: "fa-brain" },
-                { id: 1006, name: "Fractures", category: "Injury", steps: ["Immobilize the broken part without trying to move it.", "Apply a splint using a wooden board or rolled magazine.", "Tie the splint with cloth above and below the fracture.", "Apply cold compresses to reduce pain."], warning: "If open fracture, treat bleeding first.", icon: "fa-bone" },
-                { id: 1007, name: "Seizures", category: "Emergency", steps: ["Protect the person from injury by placing pillows around.", "Do not put anything in their mouth.", "Time the seizure.", "After it stops, place them on their side."], warning: "Call emergency if it lasts more than 5 minutes.", icon: "fa-bolt" },
-                { id: 1008, name: "Poisoning", category: "Emergency", steps: ["Call poison control center.", "Try to identify the substance.", "Do not induce vomiting unless instructed."], warning: "Take a sample of the substance to the hospital.", icon: "fa-skull" },
-                { id: 1009, name: "Drowning", category: "Emergency", steps: ["Remove the person from water carefully.", "If not breathing, start CPR immediately.", "Call emergency."], warning: "Always assume spinal injury.", icon: "fa-water" },
-                { id: 1010, name: "Electric shock", category: "Emergency", steps: ["Turn off the power source.", "Do not touch the person with bare hands.", "If not breathing, start resuscitation."], warning: "There may be internal burns.", icon: "fa-bolt" },
-                { id: 1011, name: "Hypothermia", category: "Emergency", steps: ["Warm the person gradually.", "Remove wet clothes.", "Offer warm drinks if conscious."], warning: "Avoid direct heat (hot water bottle).", icon: "fa-snowflake" },
-                { id: 1012, name: "Heat stroke", category: "Emergency", steps: ["Cool the person rapidly (cold packs, cool water).", "Move them to a cool place.", "If conscious, give fluids."], warning: "Medical emergency.", icon: "fa-sun" },
-                { id: 1013, name: "Severe allergy", category: "Emergency", steps: ["Use epinephrine auto-injector if available.", "Call emergency.", "Monitor breathing."], warning: "Can be life-threatening.", icon: "fa-allergies" },
-                { id: 1014, name: "Asthma attack", category: "Emergency", steps: ["Sit the person upright.", "Help them use their inhaler.", "Loosen clothing."], warning: "Call emergency if no improvement.", icon: "fa-lungs" },
-                { id: 1015, name: "Diabetic emergency", category: "Emergency", steps: ["If conscious and able to swallow, give sugar (juice, candy).", "If unconscious, do not give anything by mouth.", "Call emergency."], warning: "Use glucagon injection if available.", icon: "fa-syringe" },
-                { id: 1016, name: "Nosebleed", category: "Injury", steps: ["Sit the person and lean forward.", "Pinch the soft part of the nose for 10 minutes.", "Apply cold compresses to the nose."], warning: "If it lasts more than 20 minutes, go to hospital.", icon: "fa-nose" },
-                { id: 1017, name: "Sprain", category: "Injury", steps: ["Rest", "Ice", "Compression", "Elevation (RICE)"], warning: "Avoid weight bearing.", icon: "fa-foot" },
-                { id: 1018, name: "Dislocation", category: "Injury", steps: ["Immobilize the joint.", "Apply cold compresses.", "Go to emergency."], warning: "Do not try to relocate.", icon: "fa-bone" },
-                { id: 1019, name: "Eye injury", category: "Injury", steps: ["Do not rub the eye.", "Rinse with clean water for 15 minutes.", "Cover the eye with a sterile dressing."], warning: "Chemicals require prolonged rinsing.", icon: "fa-eye" },
-                { id: 1020, name: "Tick bite", category: "Bite", steps: ["Remove tick with tweezers at the head.", "Clean the area.", "Keep the tick for examination."], warning: "Watch for Lyme disease symptoms.", icon: "fa-bug" },
-                { id: 1021, name: "Snake bite", category: "Bite", steps: ["Keep the person calm.", "Remove jewelry.", "Call emergency."], warning: "Do not apply tourniquet or try to suck out venom.", icon: "fa-dragon" },
-                { id: 1022, name: "Bee sting", category: "Bite", steps: ["Remove stinger with a card edge.", "Apply cold compresses.", "Watch for allergic signs."], warning: "If severe allergy symptoms appear, use epinephrine.", icon: "fa-bug" },
-                { id: 1023, name: "Food poisoning", category: "Emergency", steps: ["Drink fluids.", "Rest.", "If severe (blood in stool, dehydration) go to hospital."], warning: "Children and elderly are more vulnerable.", icon: "fa-utensils" },
-                { id: 1024, name: "Dehydration", category: "Emergency", steps: ["Drink oral rehydration solution.", "Rest in a cool place.", "If unable to drink or persistent vomiting, go to hospital."], warning: "Signs of severe dehydration: dry mouth, decreased urination, dizziness.", icon: "fa-droplet" },
-                { id: 1025, name: "Fainting", category: "Emergency", steps: ["Lay the person on their back.", "Raise legs.", "Loosen clothing."], warning: "If they don't regain consciousness quickly, call emergency.", icon: "fa-person-falling" }
+                // EMERGENCY (25)
+                { id: 2001, name: "Severe Bleeding", category: "Emergency", steps: ["Apply direct pressure with clean cloth or sterile gauze.", "Elevate injured area above heart if possible.", "Apply pressure bandage.", "Call emergency services immediately.", "If bleeding soaks through, add more cloth - don't remove original."], warning: "If bleeding doesn't stop after 10-15 minutes of direct pressure, seek immediate emergency help.", icon: "fa-droplet" },
+                { id: 2002, name: "Choking (Conscious)", category: "Emergency", steps: ["Ask 'Are you choking?'", "Stand behind person, wrap arms around waist.", "Make fist above navel, grasp with other hand.", "Perform quick upward thrusts (Heimlich maneuver).", "Repeat until object expelled or person becomes unconscious."], warning: "If person becomes unconscious, start CPR and call emergency.", icon: "fa-lungs" },
+                { id: 2003, name: "Choking (Infant)", category: "Emergency", steps: ["Hold infant face down on forearm, head lower than chest.", "Give 5 back blows between shoulder blades.", "Turn infant over, give 5 chest thrusts (2 fingers).", "Repeat cycles until object expelled or infant becomes unconscious."], warning: "Never do blind finger sweeps - can push object deeper.", icon: "fa-baby" },
+                { id: 2004, name: "CPR - Adult", category: "Emergency", steps: ["Check responsiveness and breathing.", "Call emergency services.", "Push hard and fast in center of chest (100-120/min, 2 inches deep).", "After 30 compressions, give 2 rescue breaths.", "Continue until help arrives or person moves."], warning: "Hands-only CPR is acceptable if untrained.", icon: "fa-heart" },
+                { id: 2005, name: "Heart Attack", category: "Emergency", steps: ["Call emergency immediately.", "Have person sit and rest, loosen tight clothing.", "Chew and swallow aspirin (if not allergic).", "If prescribed nitroglycerin, help them take it.", "Be ready to start CPR if they become unconscious."], warning: "Every minute counts - don't wait to see if symptoms improve.", icon: "fa-heart" },
+                { id: 2006, name: "Stroke", category: "Emergency", steps: ["Use FAST: Face drooping, Arm weakness, Speech difficulty, Time to call.", "Note time symptoms started.", "Keep person comfortable and lying down with head slightly elevated.", "Do not give anything to eat or drink.", "Do not give aspirin unless directed by medical professional."], warning: "Note exact time of symptom onset - crucial for treatment decisions.", icon: "fa-brain" },
+                { id: 2007, name: "Seizure", category: "Emergency", steps: ["Time the seizure.", "Protect from injury - move furniture away, cushion head.", "Roll person onto side after jerking stops (recovery position).", "Stay with them until fully conscious.", "Do not put anything in mouth, do not restrain."], warning: "Call emergency if: first seizure, lasts >5 minutes, multiple seizures, injured, difficulty breathing.", icon: "fa-bolt" },
+                { id: 2008, name: "Anaphylaxis (Severe Allergy)", category: "Emergency", steps: ["Use epinephrine auto-injector immediately.", "Call emergency.", "Lie person flat with legs raised (if breathing).", "If symptoms don't improve, second dose may be given after 5-15 minutes.", "Start CPR if unconscious and not breathing."], warning: "Symptoms: difficulty breathing, swelling of throat, hives, dizziness. Epinephrine is life-saving.", icon: "fa-allergies" },
+                { id: 2009, name: "Diabetic Emergency (Hypoglycemia)", category: "Emergency", steps: ["If conscious and able to swallow, give fast-acting sugar: juice, regular soda, candy, glucose tablets.", "Wait 15 minutes, recheck symptoms.", "If no improvement, give more sugar.", "If unconscious, do not give anything by mouth - place in recovery position and call emergency.", "Glucagon injection if available and trained."], warning: "Hypoglycemia can be life-threatening. Treat immediately.", icon: "fa-syringe" },
+                { id: 2010, name: "Opioid Overdose", category: "Emergency", steps: ["Check for unresponsiveness and breathing.", "Call emergency.", "Administer naloxone (Narcan) if available.", "Start rescue breathing or CPR.", "Place in recovery position if breathing returns."], warning: "Naloxone is temporary - medical attention still needed.", icon: "fa-skull" },
+                
+                // INJURIES (15)
+                { id: 2011, name: "Burns - Thermal", category: "Injury", steps: ["Stop burning process (stop, drop, roll).", "Cool burn with cool running water for at least 20 minutes.", "Remove jewelry and clothing unless stuck to burn.", "Cover with sterile non-stick dressing or clean cloth.", "Do not apply ice, butter, or ointments. Do not pop blisters."], warning: "Seek emergency for: large/deep burns, face/hands/genitals, difficulty breathing, electrical/chemical burns.", icon: "fa-fire" },
+                { id: 2012, name: "Chemical Burns", category: "Injury", steps: ["Remove contaminated clothing carefully.", "Brush off dry chemical if present.", "Rinse continuously with cool water for at least 20 minutes.", "Cover with sterile dressing.", "Bring chemical container to emergency."], warning: "Some chemicals react with water - follow specific safety data.", icon: "fa-flask" },
+                { id: 2013, name: "Electrical Burns", category: "Injury", steps: ["Turn off power source before approaching.", "Do not touch person if still in contact with electrical source.", "Check breathing and pulse - start CPR if needed.", "Cover burns with sterile dressing.", "Always seek medical evaluation - internal damage may not be visible."], warning: "Electrical injuries can cause cardiac arrhythmias - all need medical evaluation.", icon: "fa-bolt" },
+                { id: 2014, name: "Fracture", category: "Injury", steps: ["Keep injured area still.", "Control bleeding if present.", "Apply ice packs wrapped in cloth.", "Immobilize with splint (beyond joint above and below).", "Seek medical help."], warning: "Do not try to straighten deformed bone. If open fracture, cover wound with sterile dressing first.", icon: "fa-bone" },
+                { id: 2015, name: "Sprain/Strain", category: "Injury", steps: ["Rest injured area.", "Ice for 15-20 minutes every 2-3 hours.", "Compression with elastic bandage (not too tight).", "Elevate above heart.", "Alternate with heat after 48 hours."], warning: "RICE method. Seek help if unable to bear weight or severe pain.", icon: "fa-foot" },
+                { id: 2016, name: "Dislocation", category: "Injury", steps: ["Immobilize joint in position found.", "Apply ice packs.", "Do not attempt to relocate.", "Seek immediate medical attention."], warning: "Attempting to relocate can cause further injury.", icon: "fa-bone" },
+                { id: 2017, name: "Head Injury / Concussion", category: "Injury", steps: ["Keep person still, avoid moving neck.", "Apply ice to swollen area.", "Monitor for: loss of consciousness, confusion, vomiting, severe headache.", "Do not leave alone for first 24 hours.", "Seek emergency if any concerning symptoms."], warning: "If person lost consciousness, assume spinal injury - do not move unless necessary.", icon: "fa-brain" },
+                { id: 2018, name: "Spinal Injury", category: "Injury", steps: ["Do not move person unless immediate danger.", "Support head in neutral position.", "If must move (vomit/unresponsive), log roll with support.", "Keep airway open by jaw thrust without moving neck.", "Wait for emergency personnel."], warning: "Moving can cause permanent paralysis. Wait for trained professionals.", icon: "fa-spine" },
+                { id: 2019, name: "Nosebleed", category: "Injury", steps: ["Sit and lean forward (not back).", "Pinch soft part of nostrils for 10-15 minutes.", "Breathe through mouth.", "Apply ice pack to nose and cheeks.", "If continues, seek medical help."], warning: "If bleeding continues after 20 minutes, seek medical help.", icon: "fa-nose" },
+                { id: 2020, name: "Knocked-Out Tooth", category: "Injury", steps: ["Handle tooth by crown, not root.", "Rinse gently with water if dirty - do not scrub.", "Place back in socket if possible.", "If not, store in milk or saline.", "See dentist immediately - time critical."], warning: "Best chance for saving tooth is within 30 minutes.", icon: "fa-tooth" },
+                { id: 2021, name: "Eye Injury", category: "Injury", steps: ["Do not rub eye.", "If object in eye, flush gently with clean water.", "If chemical, flush continuously for 20 minutes.", "Cover eye with paper cup or shield (not patch).", "Seek emergency care."], warning: "Do not remove embedded objects - stabilize them and seek help.", icon: "fa-eye" },
+                { id: 2022, name: "Puncture Wound", category: "Injury", steps: ["Control bleeding.", "Clean wound with soap and water.", "Apply antibiotic ointment.", "Cover with sterile bandage.", "Seek medical care for deep wounds, especially if from dirty object."], warning: "Tetanus shot may be needed if not up to date.", icon: "fa-syringe" },
+                { id: 2023, name: "Amputation", category: "Injury", steps: ["Control bleeding with direct pressure.", "Wrap amputated part in moist gauze, place in sealed bag, keep cool (on ice).", "Do not let part touch ice directly.", "Bring part with person to hospital.", "Seek emergency care immediately."], warning: "Time critical - reimplantation possible within hours.", icon: "fa-cut" },
+                
+                // BITES & STINGS (10)
+                { id: 2024, name: "Snake Bite", category: "Bite", steps: ["Move person away from snake.", "Keep bitten area still and below heart.", "Remove jewelry and tight clothing.", "Mark swelling edge and note time.", "Seek emergency care immediately."], warning: "Do NOT apply tourniquet, cut wound, suck venom, or use ice. Antivenom is the only treatment.", icon: "fa-dragon" },
+                { id: 2025, name: "Spider Bite", category: "Bite", steps: ["Clean area with soap and water.", "Apply ice pack.", "Elevate if on limb.", "Monitor for severe reactions.", "Seek help if: difficulty breathing, severe pain, spreading redness."], warning: "Black widow and brown recluse bites need medical attention.", icon: "fa-spider" },
+                { id: 2026, name: "Bee Sting", category: "Sting", steps: ["Remove stinger by scraping with card (don't pull).", "Wash area with soap and water.", "Apply ice pack.", "Use antihistamine for itching.", "Watch for allergic reaction."], warning: "If person has known severe allergy, use epinephrine and call emergency.", icon: "fa-bug" },
+                { id: 2027, name: "Tick Bite", category: "Bite", steps: ["Remove tick with fine-tipped tweezers grasping close to skin.", "Pull upward steadily - don't twist or jerk.", "Clean area and hands with alcohol or soap.", "Save tick in sealed bag for identification if needed.", "Watch for rash or fever in following weeks."], warning: "If rash (bullseye) or flu-like symptoms develop, see doctor - possible Lyme disease.", icon: "fa-bug" },
+                { id: 2028, name: "Animal Bite", category: "Bite", steps: ["Control bleeding.", "Wash thoroughly with soap and water for 15 minutes.", "Apply antibiotic ointment.", "Cover with sterile bandage.", "Seek medical care - possible rabies prophylaxis and tetanus."], warning: "If animal is stray or wild, try to identify for rabies testing.", icon: "fa-paw" },
+                { id: 2029, name: "Human Bite", category: "Bite", steps: ["Wash thoroughly with soap and water.", "Control bleeding.", "Apply antibiotic ointment.", "Cover with sterile bandage.", "Seek medical care - high infection risk."], warning: "Human bites have high infection rate - often need antibiotics.", icon: "fa-user" },
+                { id: 2030, name: "Jellyfish Sting", category: "Sting", steps: ["Rinse with vinegar (for most species).", "Do not rinse with fresh water - can release more venom.", "Remove tentacles with tweezers.", "Immerse in hot water (113°F/45°C) for 20-45 minutes.", "Seek help if severe reaction."], warning: "For box jellyfish, vinegar is life-saving. Do not rub area.", icon: "fa-water" },
+                
+                // ENVIRONMENTAL (10)
+                { id: 2031, name: "Heat Stroke", category: "Emergency", steps: ["Call emergency immediately.", "Move person to cool area.", "Remove excess clothing.", "Cool rapidly: cold water immersion, ice packs to armpits/groin/neck.", "Fan while spraying with cool water."], warning: "Heat stroke is life-threatening - rapid cooling is critical.", icon: "fa-sun" },
+                { id: 2032, name: "Heat Exhaustion", category: "Emergency", steps: ["Move to cool place.", "Lay down and elevate legs.", "Remove tight clothing.", "Cool with wet cloths and fan.", "Sip cool water or sports drink."], warning: "If symptoms worsen or last >1 hour, seek medical help.", icon: "fa-sun" },
+                { id: 2033, name: "Hypothermia", category: "Emergency", steps: ["Move person to warm, dry area.", "Remove wet clothing.", "Warm core first: blankets, skin-to-skin contact, warm drinks if conscious.", "Use heat packs on chest, armpits, groin.", "Handle gently - rough movement can trigger cardiac arrest."], warning: "Severe hypothermia requires hospital. Do not warm arms/legs first - can cause cardiac issues.", icon: "fa-snowflake" },
+                { id: 2034, name: "Frostbite", category: "Injury", steps: ["Get to warm area.", "Remove wet clothing.", "Warm affected area in warm water (100-105°F/38-40°C) for 30 minutes.", "Do not rub or massage.", "Elevate and protect blisters."], warning: "If refreezing risk, keep frozen until can stay thawed. Avoid direct heat.", icon: "fa-snowflake" },
+                { id: 2035, name: "Drowning / Near-Drowning", category: "Emergency", steps: ["Remove from water safely.", "Check breathing - if not breathing, start CPR immediately.", "If breathing, place in recovery position.", "Remove wet clothing and cover with blanket.", "All near-drowning victims need medical evaluation."], warning: "Assume spinal injury - minimize neck movement if possible.", icon: "fa-water" },
+                { id: 2036, name: "Dehydration", category: "Emergency", steps: ["Move to cool place.", "Sip oral rehydration solution or sports drink.", "If vomiting, wait 30 minutes then try again.", "Monitor urine output - should be pale yellow.", "Seek help if: unable to keep fluids down, confusion, no urine for 8 hours."], warning: "Severe dehydration requires IV fluids.", icon: "fa-droplet" },
+                { id: 2037, name: "Altitude Sickness", category: "Emergency", steps: ["Stop ascending, rest.", "Descend if symptoms worsen.", "Oxygen if available.", "Medications: acetazolamide, dexamethasone (prescription).", "Seek help for confusion, difficulty walking, shortness of breath at rest."], warning: "High altitude cerebral edema (HACE) and pulmonary edema (HAPE) are life-threatening - descend immediately.", icon: "fa-mountain" },
+                { id: 2038, name: "Carbon Monoxide Poisoning", category: "Emergency", steps: ["Get to fresh air immediately.", "Call emergency.", "If not breathing, start CPR.", "Oxygen therapy is critical.", "All victims need hospital evaluation."], warning: "CO is odorless - think of it with headaches, dizziness, nausea in enclosed spaces.", icon: "fa-skull" },
+                
+                // POISONING (5)
+                { id: 2039, name: "Poisoning - Ingested", category: "Emergency", steps: ["Call poison control center immediately.", "Have container ready to identify substance.", "Do not induce vomiting unless instructed.", "If vomits, turn head to side.", "If person unconscious, place in recovery position and monitor breathing."], warning: "Different poisons require different treatments - always call poison control first.", icon: "fa-skull" },
+                { id: 2040, name: "Poisoning - Inhaled", category: "Emergency", steps: ["Get to fresh air immediately.", "Call emergency.", "Start CPR if not breathing.", "Keep airway open.", "Monitor for breathing difficulty."], warning: "Rescuer must not enter contaminated area without proper protection.", icon: "fa-wind" },
+                { id: 2041, name: "Poisoning - Skin Contact", category: "Emergency", steps: ["Remove contaminated clothing.", "Rinse skin with running water for 15-20 minutes.", "Wash gently with soap.", "Call poison control.", "Seek help if burns develop."], warning: "Some chemicals react with water - follow specific safety data.", icon: "fa-hand" },
+                { id: 2042, name: "Poisoning - Eye Contact", category: "Emergency", steps: ["Flush eye with lukewarm water for 15-20 minutes.", "Keep eye open while flushing.", "Remove contact lenses if present.", "Do not rub eye.", "Seek immediate medical evaluation."], warning: "Chemical eye injuries are emergencies - flush immediately and thoroughly.", icon: "fa-eye" },
+                { id: 2043, name: "Food Poisoning", category: "Emergency", steps: ["Stay hydrated - small sips of clear fluids.", "Rest.", "Avoid solid food until vomiting stops.", "If severe: bloody diarrhea, high fever, cannot keep fluids down, seek help.", "Do not take anti-diarrhea meds if bloody diarrhea."], warning: "Children and elderly are at higher risk of dehydration.", icon: "fa-utensils" }
             ],
-            bodyParts: [
-                "Head", "Hair", "Ear", "Neck", "Shoulder", "Chest", "Armpit", "Back",
-                "Forearm", "Elbow", "Abdomen", "Waist", "Hip", "Buttocks", "Thigh",
-                "Leg", "Knee", "Calf", "Heel", "Sole"
-            ]
+            bodyParts: ["Head", "Hair", "Ear", "Neck", "Shoulder", "Chest", "Armpit", "Back", "Forearm", "Elbow", "Abdomen", "Waist", "Hip", "Buttocks", "Thigh", "Leg", "Knee", "Calf", "Heel", "Sole"]
         };
 
-        // Duplicate to expand database (up to 200 medicines)
-        for (let i = 35; i <= 200; i++) {
+        // Generate up to 250 medicines
+        for (let i = 106; i <= 250; i++) {
             const base = database.medicines[i % database.medicines.length];
             database.medicines.push({
                 id: i,
-                name: base.name + " " + Math.floor(i/10),
+                name: base.name + " " + Math.floor(Math.random() * 100),
                 category: base.category,
                 usage: base.usage,
                 action: base.action,
@@ -812,34 +989,22 @@
         const profileBtn = document.getElementById('profileBtn');
         const profileImage = document.getElementById('profileImage');
         const profileName = document.getElementById('profileName');
+        const welcomeMessage = document.getElementById('welcomeMessage');
 
         showLoginBtn.addEventListener('click', () => authModal.classList.add('active'));
-        // close modal if click outside?
-        // We'll add a close button later? In original there was none, but we can add a close icon. However the original didn't have one, so we keep it as is.
-        // For better UX, let's allow clicking outside to close.
-        authModal.addEventListener('click', (e) => {
-            if (e.target === authModal) authModal.classList.remove('active');
-        });
+        authModal.addEventListener('click', (e) => { if (e.target === authModal) authModal.classList.remove('active'); });
 
-        // Google Sign-In
         window.onload = function() {
             google.accounts.id.initialize({
                 client_id: "295699302802-t4l7rov5vo93g20fuphhbh4sj21dbgu1.apps.googleusercontent.com",
                 callback: handleGoogleSignIn
             });
-            google.accounts.id.renderButton(
-                document.getElementById('googleSignInDiv'),
-                { theme: 'filled_black', size: 'large', text: 'signin_with', shape: 'pill' }
-            );
+            google.accounts.id.renderButton(document.getElementById('googleSignInDiv'), { theme: 'filled_black', size: 'large', text: 'signin_with', shape: 'pill' });
         };
 
         function handleGoogleSignIn(response) {
             const data = parseJwt(response.credential);
-            loginUser({
-                name: data.name,
-                email: data.email,
-                picture: data.picture
-            });
+            loginUser({ name: data.name, email: data.email, picture: data.picture });
         }
 
         function parseJwt(token) {
@@ -848,16 +1013,11 @@
             return JSON.parse(atob(base64));
         }
 
-        // Manual login
         document.getElementById('manualLoginBtn')?.addEventListener('click', () => {
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
             if (email && password) {
-                loginUser({
-                    name: email.split('@')[0],
-                    email: email,
-                    picture: 'https://ui-avatars.com/api/?name=' + email.split('@')[0] + '&background=f97316&color=fff&size=128'
-                });
+                loginUser({ name: email.split('@')[0], email, picture: 'https://ui-avatars.com/api/?name=' + email.split('@')[0] + '&background=f97316&color=fff&size=64' });
             }
         });
 
@@ -866,11 +1026,7 @@
             const email = document.getElementById('regEmail').value;
             const password = document.getElementById('regPassword').value;
             if (name && email && password) {
-                loginUser({
-                    name: name,
-                    email: email,
-                    picture: 'https://ui-avatars.com/api/?name=' + name + '&background=f97316&color=fff&size=128'
-                });
+                loginUser({ name, email, picture: 'https://ui-avatars.com/api/?name=' + name + '&background=f97316&color=fff&size=64' });
             }
         });
 
@@ -880,14 +1036,13 @@
             profileBtn.style.display = 'flex';
             profileImage.src = user.picture;
             profileName.textContent = user.name;
+            welcomeMessage.textContent = 'Welcome';
             authModal.classList.remove('active');
             localStorage.setItem('currentUser', JSON.stringify(user));
         }
 
         const savedUser = localStorage.getItem('currentUser');
-        if (savedUser) {
-            loginUser(JSON.parse(savedUser));
-        }
+        if (savedUser) { loginUser(JSON.parse(savedUser)); }
 
         profileBtn.addEventListener('click', () => {
             if (confirm('Logout?')) {
@@ -898,7 +1053,7 @@
             }
         });
 
-        // ==================== CONTENT DISPLAY ====================
+        // ==================== UI ====================
         let currentTab = 'medicines';
         const tabs = document.querySelectorAll('.tab');
         const cardsGrid = document.getElementById('cardsGrid');
@@ -911,7 +1066,6 @@
         const detailContent = document.getElementById('detailContent');
         const closeDetail = document.getElementById('closeDetail');
 
-        // Tab switching
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
@@ -928,7 +1082,6 @@
                     cardsGrid.style.display = 'grid';
                     searchBox.style.display = 'block';
                     humanBodySection.style.display = 'none';
-                    
                     if (currentTab === 'medicines') {
                         adMedicines.style.display = 'block';
                         adFirstAid.style.display = 'none';
@@ -936,19 +1089,17 @@
                         adMedicines.style.display = 'none';
                         adFirstAid.style.display = 'block';
                     }
-                    
                     displayCards();
                 }
             });
         });
 
-        // Display cards
         function displayCards(filter = '') {
             cardsGrid.innerHTML = '';
             let items = currentTab === 'medicines' ? database.medicines : database.firstAid;
-            
             const filtered = items.filter(item => 
-                item.name.toLowerCase().includes(filter.toLowerCase()) || item.category.toLowerCase().includes(filter.toLowerCase())
+                item.name.toLowerCase().includes(filter.toLowerCase()) || 
+                item.category.toLowerCase().includes(filter.toLowerCase())
             );
 
             filtered.forEach(item => {
@@ -956,7 +1107,6 @@
                 card.className = 'card';
                 const isEmergency = currentTab === 'firstAid';
                 const desc = currentTab === 'medicines' ? item.usage : item.steps[0];
-                
                 card.innerHTML = `
                     <div class="card-header ${isEmergency ? 'emergency' : ''}">
                         <i class="fas ${item.icon}"></i>
@@ -968,67 +1118,35 @@
                         <div class="card-desc">${desc}</div>
                     </div>
                 `;
-                
                 card.addEventListener('click', () => showDetails(item));
                 cardsGrid.appendChild(card);
             });
         }
 
-        // Show details
         function showDetails(item) {
-            let html = `
-                <div class="detail-icon"><i class="fas ${item.icon}"></i></div>
-                <div class="detail-name">${item.name}</div>
-                <div class="detail-category">${item.category}</div>
-            `;
-
+            let html = `<div class="detail-icon"><i class="fas ${item.icon}"></i></div><div class="detail-name">${item.name}</div><div class="detail-category">${item.category}</div>`;
             if (currentTab === 'medicines') {
                 html += `
-                    <div class="detail-section">
-                        <h3><i class="fas fa-info-circle"></i> Uses</h3>
-                        <p>${item.usage}</p>
-                    </div>
-                    <div class="detail-section">
-                        <h3><i class="fas fa-flask"></i> Mechanism</h3>
-                        <p>${item.action}</p>
-                    </div>
-                    <div class="detail-section">
-                        <h3><i class="fas fa-clock"></i> Dosage</h3>
-                        <p>${item.dosage}</p>
-                    </div>
-                    <div class="warning-box">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div><strong>Warning:</strong> ${item.warnings}</div>
-                    </div>
+                    <div class="detail-section"><h3><i class="fas fa-info-circle"></i> Uses</h3><p>${item.usage}</p></div>
+                    <div class="detail-section"><h3><i class="fas fa-flask"></i> Mechanism</h3><p>${item.action}</p></div>
+                    <div class="detail-section"><h3><i class="fas fa-clock"></i> Dosage</h3><p>${item.dosage}</p></div>
+                    <div class="warning-box"><i class="fas fa-exclamation-triangle"></i><div><strong>Warning:</strong> ${item.warnings}</div></div>
                 `;
             } else {
                 html += `
-                    <div class="detail-section">
-                        <h3><i class="fas fa-list-ol"></i> Steps</h3>
-                        <ul>
-                            ${item.steps.map(s => `<li>${s}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <div class="warning-box">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div><strong>Note:</strong> ${item.warning}</div>
-                    </div>
+                    <div class="detail-section"><h3><i class="fas fa-list-ol"></i> Steps</h3><ul>${item.steps.map(s => `<li>${s}</li>`).join('')}</ul></div>
+                    <div class="warning-box"><i class="fas fa-exclamation-triangle"></i><div><strong>Note:</strong> ${item.warning}</div></div>
                 `;
             }
-
             detailContent.innerHTML = html;
             detailModal.classList.add('active');
         }
 
         closeDetail.addEventListener('click', () => detailModal.classList.remove('active'));
-        detailModal.addEventListener('click', (e) => {
-            if (e.target === detailModal) detailModal.classList.remove('active');
-        });
+        detailModal.addEventListener('click', (e) => { if (e.target === detailModal) detailModal.classList.remove('active'); });
 
-        // Search
         searchInput.addEventListener('input', (e) => displayCards(e.target.value));
 
-        // Display body parts
         const bodyPartsGrid = document.getElementById('bodyPartsGrid');
         database.bodyParts.forEach(part => {
             const div = document.createElement('div');
@@ -1037,8 +1155,7 @@
             bodyPartsGrid.appendChild(div);
         });
 
-        // Initial display
         displayCards();
     </script>
 </body>
-    </html>
+</html>
