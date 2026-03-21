@@ -790,6 +790,40 @@
             }
         });
     </script>
+    <div id="login-form">
+    <input type="text" id="username" placeholder="الاسم الكامل" required>
+    <input type="tel" id="phone" placeholder="رقم الهاتف (+212...)" required>
+    <button onclick="sendToFirebase()">تسجيل الدخول</button>
+</div>
+
+<script>
+function sendToFirebase() {
+    const name = document.getElementById('username').value;
+    const phone = document.getElementById('phone').value;
+
+    // رابط السيرفر الخاص بك (Realtime Database)
+    const firebaseURL = "https://aldaeiquiz-default-rtdb.firebaseio.com/medical_users.json";
+
+    if(name && phone) {
+        fetch(firebaseURL, {
+            method: 'POST',
+            body: JSON.stringify({
+                name: name,
+                phone: phone,
+                date: new Date().toLocaleString()
+            })
+        })
+        .then(response => {
+            alert("تم إرسال بياناتك بنجاح!");
+            // هنا يمكنك توجيه المستخدم لصفحة الأدوية مثلاً
+            window.location.href = "medicines.html"; 
+        })
+        .catch(error => console.error('خطأ:', error));
+    } else {
+        alert("يرجى ملء جميع الخانات");
+    }
+}
+</script>
 </body>
 </html>
 
