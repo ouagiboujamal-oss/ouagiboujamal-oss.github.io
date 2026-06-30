@@ -5,38 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IPTV Stream Pro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"></script>
 <style>
 /* ═══════════════════════════════════════════════
-   DESIGN TOKENS
+   DESIGN TOKENS — لوحة "غرفة التحكم" (Broadcast Console)
+   رمادي غرافيتي دافئ + كهرمان للبث المباشر (تالي) + تركواز للتفاعل
 ═══════════════════════════════════════════════ */
 :root {
-  --bg-0:        #07080b;
-  --bg-1:        #0e1016;
-  --bg-2:        #151820;
-  --bg-3:        #1c2030;
-  --bg-4:        #232840;
-  --accent:      #4f8ef7;
-  --accent-dim:  rgba(79,142,247,0.18);
-  --accent-glow: rgba(79,142,247,0.35);
-  --hot:         #f4455a;
-  --hot-dim:     rgba(244,69,90,0.2);
-  --gold:        #f5c518;
-  --gold-dim:    rgba(245,197,24,0.15);
-  --green:       #22c55e;
-  --text-1:      #eef0f8;
-  --text-2:      #8892aa;
-  --text-3:      #4a526a;
-  --border:      rgba(255,255,255,0.065);
-  --border-2:    rgba(255,255,255,0.12);
-  --r-xs: 4px; --r-sm: 7px; --r-md: 11px; --r-lg: 16px;
+  --void:        #0c0c0e;
+  --panel:       #15151a;
+  --panel-2:     #1c1d23;
+  --panel-3:     #25262e;
+  --panel-4:     #313340;
+  --line:        rgba(255,255,255,0.07);
+  --line-2:      rgba(255,255,255,0.14);
+  --ink-1:       #f1efe9;
+  --ink-2:       #97948d;
+  --ink-3:       #5c5a55;
+
+  --signal:      #ff8a42;            /* كهرمان البث المباشر / تالي */
+  --signal-dim:  rgba(255,138,66,0.16);
+  --signal-glow: rgba(255,138,66,0.32);
+
+  --cue:         #34c0ad;            /* تركواز التفاعل / التحديد */
+  --cue-dim:     rgba(52,192,173,0.16);
+  --cue-glow:    rgba(52,192,173,0.30);
+
+  --danger:      #ef4444;
+  --danger-dim:  rgba(239,68,68,0.16);
+  --good:        #3bbf72;
+  --good-dim:    rgba(59,191,114,0.16);
+
+  --r-xs: 3px; --r-sm: 6px; --r-md: 9px; --r-lg: 14px; --r-round: 999px;
   --ease: cubic-bezier(.4,0,.2,1);
-  --font: 'Cairo', system-ui, sans-serif;
-  --sidebar-w: 300px;
-  --header-h: 62px;
+  --font:      'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+  --sidebar-w: 320px;
+  --header-h: 60px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,26 +53,41 @@ html, body { height: 100%; overflow: hidden; }
 
 body {
   font-family: var(--font);
-  background: var(--bg-0);
-  color: var(--text-1);
+  background: var(--void);
+  color: var(--ink-1);
+  -webkit-font-smoothing: antialiased;
+}
+
+svg { display: block; }
+
+button, input, select { font: inherit; color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--cue);
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
 
 /* ═══════════════════════════════════════════════
    SCROLLBAR
 ═══════════════════════════════════════════════ */
-::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--bg-4); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
-* { scrollbar-width: thin; scrollbar-color: var(--bg-4) transparent; }
+::-webkit-scrollbar-thumb { background: var(--panel-4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+* { scrollbar-width: thin; scrollbar-color: var(--panel-4) transparent; }
 
 /* ═══════════════════════════════════════════════
-   HEADER
+   HEADER — شريط التحكم العلوي
 ═══════════════════════════════════════════════ */
 .header {
   height: var(--header-h);
-  background: var(--bg-1);
-  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -75,28 +98,31 @@ body {
 }
 
 .logo {
-  display: flex; align-items: center; gap: 9px; flex-shrink: 0;
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
   text-decoration: none;
 }
 .logo-mark {
-  width: 34px; height: 34px;
-  background: linear-gradient(135deg, var(--accent) 0%, #7c4af7 100%);
+  width: 32px; height: 32px;
+  background: var(--panel-3);
+  border: 1px solid var(--line-2);
   border-radius: var(--r-sm);
   display: flex; align-items: center; justify-content: center;
-  font-size: 17px;
-  box-shadow: 0 0 16px var(--accent-glow);
+  color: var(--cue);
   flex-shrink: 0;
 }
+.logo-mark svg { width: 17px; height: 17px; }
 .logo-name {
-  font-size: 1rem; font-weight: 700; letter-spacing: -.3px;
-  background: linear-gradient(90deg, var(--text-1) 40%, var(--text-2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-size: 0.98rem; font-weight: 700; letter-spacing: -.2px;
+  color: var(--ink-1);
+  font-family: var(--font-mono);
 }
 .logo-tag {
-  font-size: 0.58rem; font-weight: 700; letter-spacing: .5px;
-  background: var(--accent); color: #fff;
-  -webkit-text-fill-color: #fff;
-  padding: 2px 6px; border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem; font-weight: 600; letter-spacing: .9px;
+  color: var(--cue);
+  border: 1px solid var(--cue);
+  padding: 2px 6px; border-radius: var(--r-xs);
+  text-transform: uppercase;
 }
 
 /* URL bar */
@@ -108,30 +134,31 @@ body {
 }
 .url-field svg {
   position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-  color: var(--text-3); pointer-events: none; flex-shrink: 0;
+  color: var(--ink-3); pointer-events: none; flex-shrink: 0;
+  width: 15px; height: 15px;
 }
 .url-input {
   width: 100%;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
   border-radius: var(--r-md);
-  color: var(--text-1);
-  font-family: var(--font);
-  font-size: 0.83rem;
+  color: var(--ink-1);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
   padding: 9px 38px 9px 12px;
   outline: none;
   transition: border-color .18s var(--ease), box-shadow .18s var(--ease);
   direction: ltr;
 }
-.url-input::placeholder { color: var(--text-3); direction: rtl; }
+.url-input::placeholder { color: var(--ink-3); direction: rtl; font-family: var(--font); }
 .url-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-dim);
+  border-color: var(--cue);
+  box-shadow: 0 0 0 3px var(--cue-dim);
 }
 
 /* buttons */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
   padding: 9px 16px;
   border: none; border-radius: var(--r-md);
   font-family: var(--font); font-size: 0.82rem; font-weight: 600;
@@ -139,14 +166,15 @@ body {
   transition: all .16s var(--ease);
   flex-shrink: 0;
 }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: #3a7af0; box-shadow: 0 4px 18px var(--accent-glow); transform: translateY(-1px); }
+.btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.btn-primary { background: var(--cue); color: #06201c; }
+.btn-primary:hover { filter: brightness(1.08); box-shadow: 0 4px 18px var(--cue-glow); transform: translateY(-1px); }
 .btn-primary:active { transform: none; box-shadow: none; }
 .btn-ghost {
-  background: var(--bg-2); color: var(--text-2);
-  border: 1px solid var(--border);
+  background: var(--panel-2); color: var(--ink-2);
+  border: 1px solid var(--line);
 }
-.btn-ghost:hover { background: var(--bg-3); color: var(--text-1); }
+.btn-ghost:hover { background: var(--panel-3); color: var(--ink-1); border-color: var(--line-2); }
 .btn-icon { padding: 9px 10px; }
 .btn:disabled { opacity: .5; pointer-events: none; }
 
@@ -168,9 +196,9 @@ body {
 .sidebar {
   width: var(--sidebar-w);
   min-width: 240px;
-  max-width: 420px;
-  background: var(--bg-1);
-  border-left: 1px solid var(--border);
+  max-width: 440px;
+  background: var(--panel);
+  border-left: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -180,7 +208,7 @@ body {
 
 /* sidebar top controls */
 .sb-top {
-  padding: 10px 12px 0;
+  padding: 12px 12px 0;
   display: flex; flex-direction: column; gap: 8px;
   flex-shrink: 0;
 }
@@ -189,150 +217,181 @@ body {
 .search-wrap { position: relative; }
 .search-wrap svg {
   position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
-  color: var(--text-3); pointer-events: none;
+  color: var(--ink-3); pointer-events: none;
+  width: 13px; height: 13px;
 }
 .search-input {
-  width: 100%; background: var(--bg-2);
-  border: 1px solid var(--border); border-radius: var(--r-sm);
-  color: var(--text-1); font-family: var(--font); font-size: 0.8rem;
+  width: 100%; background: var(--panel-2);
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  color: var(--ink-1); font-family: var(--font); font-size: 0.8rem;
   padding: 8px 34px 8px 10px; outline: none;
   transition: border-color .15s var(--ease);
 }
-.search-input:focus { border-color: var(--accent); }
-.search-input::placeholder { color: var(--text-3); }
+.search-input:focus { border-color: var(--cue); }
+.search-input::placeholder { color: var(--ink-3); }
 
 /* group dropdown */
 .group-select-wrap { position: relative; }
 .group-select-wrap svg {
   position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
-  color: var(--text-3); pointer-events: none;
+  color: var(--ink-3); pointer-events: none;
+  width: 12px; height: 12px;
 }
 .group-select {
-  width: 100%; background: var(--bg-2);
-  border: 1px solid var(--border); border-radius: var(--r-sm);
-  color: var(--text-1); font-family: var(--font); font-size: 0.78rem;
+  width: 100%; background: var(--panel-2);
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  color: var(--ink-1); font-family: var(--font); font-size: 0.78rem;
   padding: 7px 10px 7px 28px; outline: none;
   appearance: none; cursor: pointer;
   transition: border-color .15s var(--ease);
   direction: rtl;
 }
-.group-select:focus { border-color: var(--accent); }
+.group-select:focus { border-color: var(--cue); }
 
 /* view tabs */
 .view-tabs {
   display: flex; gap: 4px;
-  background: var(--bg-2);
+  background: var(--panel-2);
   border-radius: var(--r-sm);
   padding: 3px;
   margin-bottom: 2px;
 }
 .view-tab {
   flex: 1; text-align: center;
-  padding: 5px 8px; border-radius: var(--r-xs);
-  font-size: 0.75rem; font-weight: 600; color: var(--text-3);
+  padding: 6px 8px; border-radius: var(--r-xs);
+  font-size: 0.75rem; font-weight: 600; color: var(--ink-3);
   cursor: pointer; transition: all .15s var(--ease);
   border: none; background: none; font-family: var(--font);
-  display: flex; align-items: center; justify-content: center; gap: 5px;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
 }
-.view-tab.active { background: var(--bg-4); color: var(--text-1); }
-.view-tab:hover:not(.active) { color: var(--text-2); }
+.view-tab svg { width: 13px; height: 13px; }
+.view-tab.active { background: var(--panel-4); color: var(--ink-1); }
+.view-tab:hover:not(.active) { color: var(--ink-2); }
 
 /* channel count */
 .sb-meta {
-  padding: 6px 12px;
+  padding: 7px 12px;
   display: flex; justify-content: space-between; align-items: center;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--line);
   flex-shrink: 0;
 }
-.sb-meta-text { font-size: 0.7rem; color: var(--text-3); }
+.sb-meta-text { font-size: 0.7rem; color: var(--ink-3); }
 .sb-meta-count {
-  font-size: 0.7rem; font-weight: 700; color: var(--accent);
-  background: var(--accent-dim); padding: 2px 8px; border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem; font-weight: 600; color: var(--cue);
+  background: var(--cue-dim); padding: 2px 8px; border-radius: var(--r-round);
+  direction: ltr;
 }
 
-/* virtual list container */
+/* virtual grid container */
 .vlist-wrap {
   flex: 1; overflow-y: auto; position: relative;
+  padding: 10px;
 }
 .vlist-spacer { position: relative; width: 100%; }
 .vlist-content {
   position: absolute; left: 0; right: 0; top: 0;
-  padding: 4px 8px;
+  display: grid;
 }
 
-/* channel item */
-.ch-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 7px 9px;
-  border-radius: var(--r-sm);
+/* ── Channel tile (square card) ── */
+.tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-md);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  overflow: hidden;
   cursor: pointer;
-  transition: background .12s var(--ease), border-color .12s var(--ease);
-  border: 1px solid transparent;
-  margin-bottom: 2px;
-  user-select: none;
+  transition: transform .14s var(--ease), border-color .14s var(--ease), box-shadow .14s var(--ease);
 }
-.ch-item:hover { background: var(--bg-3); }
-.ch-item.active {
-  background: var(--bg-3);
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent-dim) inset;
+.tile:hover {
+  border-color: var(--line-2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.4);
+}
+.tile.active {
+  border-color: var(--signal);
+  box-shadow: 0 0 0 1px var(--signal-dim), 0 10px 26px rgba(0,0,0,.45);
 }
 
-.ch-logo {
-  width: 40px; height: 26px;
-  border-radius: 4px; object-fit: contain;
-  background: var(--bg-2); border: 1px solid var(--border);
-  flex-shrink: 0;
+.tile-tally {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--signal); opacity: 0; transition: opacity .15s;
+  z-index: 3;
 }
-.ch-logo-ph {
-  width: 40px; height: 26px; flex-shrink: 0;
-  border-radius: 4px; background: var(--bg-2);
-  border: 1px solid var(--border);
+.tile.active .tile-tally { opacity: 1; box-shadow: 0 0 8px var(--signal-glow); }
+
+.tile-media {
+  position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; color: var(--text-3);
+  background:
+    radial-gradient(circle at 50% 38%, var(--panel-3) 0%, var(--panel-2) 72%);
 }
-.ch-info { flex: 1; min-width: 0; }
-.ch-name {
-  font-size: 0.8rem; font-weight: 500; line-height: 1.35;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+.tile-logo {
+  max-width: 60%; max-height: 52%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,.45));
 }
-.ch-group {
-  font-size: 0.67rem; color: var(--text-3); margin-top: 1px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+.tile-mono {
+  width: 44%; aspect-ratio: 1; border-radius: 50%;
+  background: var(--panel-4);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font); font-weight: 700; font-size: 1.3rem;
+  color: var(--ink-2);
 }
-.ch-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-.ch-fav-btn {
-  background: none; border: none; cursor: pointer;
-  font-size: 13px; padding: 3px; border-radius: 4px;
-  opacity: .35; transition: opacity .12s, transform .12s;
-  line-height: 1;
-}
-.ch-fav-btn:hover { opacity: .8; transform: scale(1.15); }
-.ch-fav-btn.faved { opacity: 1; }
-.ch-live-dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--hot); flex-shrink: 0;
-  box-shadow: 0 0 5px var(--hot);
-  animation: blink 1.6s ease-in-out infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-/* empty + loading states */
-.state-box {
+.tile-badge-num {
+  position: absolute; top: 6px; inset-inline-start: 6px; z-index: 2;
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-2);
+  background: rgba(12,12,14,.6); border: 1px solid var(--line);
+  border-radius: var(--r-round); padding: 2px 6px;
+  direction: ltr; backdrop-filter: blur(3px);
+}
+
+.tile-fav {
+  position: absolute; top: 5px; inset-inline-end: 5px; z-index: 2;
+  width: 25px; height: 25px; border-radius: 50%;
+  background: rgba(12,12,14,.6); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-3); cursor: pointer;
+  backdrop-filter: blur(3px);
+  transition: color .12s var(--ease), border-color .12s var(--ease), transform .12s var(--ease);
+}
+.tile-fav svg { width: 13px; height: 13px; }
+.tile-fav:hover { transform: scale(1.1); color: var(--ink-1); }
+.tile-fav.faved { color: var(--cue); border-color: var(--cue); }
+.tile-fav.faved svg path { fill: currentColor; }
+
+.tile-label {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding: 16px 8px 7px;
+  background: linear-gradient(to top, rgba(10,10,12,.95) 10%, rgba(10,10,12,0));
+}
+.tile-name {
+  font-size: 0.76rem; font-weight: 600; color: var(--ink-1);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.tile-group {
+  font-size: 0.62rem; color: var(--ink-3); margin-top: 1px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* empty / loading states inside grid */
+.grid-state {
+  position: absolute; inset: 0;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  gap: 12px; padding: 40px 20px; text-align: center;
-  height: 100%;
+  gap: 12px; padding: 30px 20px; text-align: center;
 }
-.state-icon { font-size: 40px; opacity: .3; }
-.state-title { font-size: 0.9rem; color: var(--text-2); font-weight: 600; }
-.state-sub { font-size: 0.78rem; color: var(--text-3); line-height: 1.6; max-width: 240px; }
+.grid-state .state-icon { width: 38px; height: 38px; color: var(--ink-3); opacity: .55; }
+.state-title { font-size: 0.85rem; color: var(--ink-2); font-weight: 600; }
+.state-sub { font-size: 0.74rem; color: var(--ink-3); line-height: 1.6; max-width: 230px; }
 
 /* resize handle */
 .resize-handle {
   position: absolute; top: 0; right: -3px; bottom: 0; width: 6px;
   cursor: col-resize; z-index: 10;
-  transition: background .15s;
 }
 .resize-handle::after {
   content: ''; position: absolute;
@@ -342,7 +401,7 @@ body {
 }
 .resize-handle:hover::after,
 .resize-handle.dragging::after {
-  background: var(--accent);
+  background: var(--cue);
 }
 
 /* ═══════════════════════════════════════════════
@@ -350,7 +409,7 @@ body {
 ═══════════════════════════════════════════════ */
 .main {
   flex: 1; display: flex; flex-direction: column; overflow: hidden;
-  background: var(--bg-0);
+  background: var(--void);
 }
 
 .player-zone {
@@ -365,21 +424,22 @@ body {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  gap: 20px;
-  background: radial-gradient(ellipse at 40% 40%, rgba(79,142,247,0.05) 0%, transparent 60%),
-              var(--bg-0);
+  gap: 18px;
+  background: var(--void);
 }
-.idle-logo {
-  font-size: 64px; opacity: .12;
+.idle-icon-wrap {
+  width: 64px; height: 64px; color: var(--ink-3);
   animation: float 4s ease-in-out infinite;
 }
+.idle-icon-wrap svg { width: 100%; height: 100%; }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-.idle-title { font-size: 1.3rem; font-weight: 700; color: var(--text-2); }
-.idle-sub { font-size: 0.82rem; color: var(--text-3); text-align: center; max-width: 340px; line-height: 1.7; }
+.idle-title { font-size: 1.25rem; font-weight: 700; color: var(--ink-2); }
+.idle-sub { font-size: 0.82rem; color: var(--ink-3); text-align: center; max-width: 340px; line-height: 1.7; }
 .idle-formats {
-  font-size: 0.7rem; color: var(--text-3); direction: ltr;
-  background: var(--bg-2); border: 1px solid var(--border);
-  padding: 5px 14px; border-radius: 20px; letter-spacing: .3px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem; color: var(--ink-3); direction: ltr;
+  background: var(--panel-2); border: 1px solid var(--line);
+  padding: 5px 14px; border-radius: var(--r-round); letter-spacing: 1px;
 }
 
 /* video */
@@ -389,77 +449,100 @@ body {
 }
 .video-js { background: #000 !important; width: 100% !important; height: 100% !important; }
 
+/* on-air corner tally over the video */
+.player-tally {
+  position: absolute; top: 14px; inset-inline-start: 14px; z-index: 15;
+  display: none; align-items: center; gap: 7px;
+  background: rgba(12,12,14,.55); border: 1px solid var(--line-2);
+  border-radius: var(--r-round); padding: 5px 11px;
+  backdrop-filter: blur(5px);
+}
+.player-tally.show { display: flex; }
+.player-tally-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--signal);
+  box-shadow: 0 0 6px var(--signal-glow);
+  animation: blink 1.6s ease-in-out infinite;
+}
+.player-tally span.lbl {
+  font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 1px; color: var(--signal); direction: ltr;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
 /* player loading overlay */
 .player-loading {
   position: absolute; inset: 0; z-index: 20;
   display: none;
   flex-direction: column; align-items: center; justify-content: center; gap: 14px;
-  background: rgba(7,8,11,.82);
+  background: rgba(12,12,14,.85);
   backdrop-filter: blur(4px);
 }
 .player-loading.show { display: flex; }
 .spinner {
-  width: 42px; height: 42px;
-  border: 3px solid var(--border-2);
-  border-top-color: var(--accent);
+  width: 40px; height: 40px;
+  border: 3px solid var(--line-2);
+  border-top-color: var(--cue);
   border-radius: 50%;
   animation: spin .65s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
-.spinner-text { font-size: 0.82rem; color: var(--text-2); }
+.spinner-text { font-size: 0.8rem; color: var(--ink-2); }
 
 /* reconnect overlay */
 .reconnect-overlay {
   position: absolute; inset: 0; z-index: 25;
   display: none;
   flex-direction: column; align-items: center; justify-content: center; gap: 16px;
-  background: rgba(7,8,11,.9);
+  background: rgba(12,12,14,.92);
 }
 .reconnect-overlay.show { display: flex; }
-.reconnect-icon { font-size: 40px; }
-.reconnect-title { font-size: 1rem; font-weight: 700; color: var(--text-1); }
-.reconnect-sub { font-size: 0.8rem; color: var(--text-3); }
+.reconnect-icon { width: 36px; height: 36px; color: var(--signal); animation: spin 1.1s linear infinite; }
+.reconnect-icon svg { width: 100%; height: 100%; }
+.reconnect-title { font-size: 1rem; font-weight: 700; color: var(--ink-1); }
+.reconnect-sub { font-size: 0.8rem; color: var(--ink-3); }
 .reconnect-progress {
   width: 200px; height: 3px;
-  background: var(--bg-3); border-radius: 2px; overflow: hidden;
+  background: var(--panel-3); border-radius: 2px; overflow: hidden;
 }
 .reconnect-bar {
-  height: 100%; background: var(--accent); border-radius: 2px;
+  height: 100%; background: var(--signal); border-radius: 2px;
   transition: width .1s linear;
 }
 .btn-cancel-rc {
-  font-size: 0.78rem; padding: 7px 14px;
-  background: var(--bg-3); color: var(--text-2);
-  border: 1px solid var(--border); border-radius: var(--r-sm);
+  font-size: 0.78rem; padding: 7px 16px;
+  background: var(--panel-3); color: var(--ink-2);
+  border: 1px solid var(--line); border-radius: var(--r-sm);
   cursor: pointer; font-family: var(--font);
+  transition: all .14s var(--ease);
 }
-.btn-cancel-rc:hover { color: var(--text-1); background: var(--bg-4); }
+.btn-cancel-rc:hover { color: var(--ink-1); background: var(--panel-4); }
 
 /* custom controls bar */
 .custom-controls {
-  position: absolute; bottom: 50px; right: 16px;
+  position: absolute; bottom: 54px; inset-inline-end: 16px;
   display: none;
   flex-direction: column; gap: 6px; z-index: 30;
 }
 .player-zone:hover .custom-controls { display: flex; }
 .ctrl-btn {
   width: 34px; height: 34px;
-  background: rgba(14,16,22,.8);
-  border: 1px solid var(--border-2);
+  background: rgba(12,12,14,.78);
+  border: 1px solid var(--line-2);
   border-radius: var(--r-sm);
-  color: var(--text-2);
-  font-size: 12px; font-weight: 700; font-family: var(--font);
+  color: var(--ink-2);
+  font-size: 11px; font-weight: 700; font-family: var(--font-mono);
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all .14s;
+  transition: all .14s var(--ease);
   backdrop-filter: blur(4px);
 }
-.ctrl-btn:hover { background: var(--bg-4); color: var(--text-1); border-color: var(--accent); }
+.ctrl-btn svg { width: 15px; height: 15px; }
+.ctrl-btn:hover { background: var(--panel-4); color: var(--ink-1); border-color: var(--cue); }
 
 /* Video.js overrides */
 .vjs-big-play-button {
   border: none !important; border-radius: 50% !important;
-  width: 68px !important; height: 68px !important; line-height: 68px !important;
-  background: rgba(79,142,247,.85) !important;
+  width: 66px !important; height: 66px !important; line-height: 66px !important;
+  background: rgba(52,192,173,.88) !important;
   top: 50% !important; left: 50% !important;
   transform: translate(-50%,-50%) !important;
   transition: transform .14s !important;
@@ -469,46 +552,49 @@ body {
   background: linear-gradient(transparent, rgba(0,0,0,.9)) !important;
   height: 44px !important;
 }
-.vjs-progress-control .vjs-play-progress { background: var(--accent) !important; }
-.vjs-volume-level { background: var(--accent) !important; }
+.vjs-progress-control .vjs-play-progress { background: var(--cue) !important; }
+.vjs-volume-level { background: var(--cue) !important; }
 
 /* ═══════════════════════════════════════════════
    NOW PLAYING BAR
 ═══════════════════════════════════════════════ */
 .np-bar {
-  background: var(--bg-1);
-  border-top: 1px solid var(--border);
+  background: var(--panel);
+  border-top: 1px solid var(--line);
   padding: 8px 18px;
   display: none;
   align-items: center; gap: 14px;
-  min-height: 50px;
+  min-height: 52px;
   flex-shrink: 0;
 }
 .np-bar.show { display: flex; }
 .np-live {
-  font-size: 0.65rem; font-weight: 800; letter-spacing: .6px;
-  color: var(--hot); display: flex; align-items: center; gap: 5px;
-  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.64rem; font-weight: 600; letter-spacing: 1px;
+  color: var(--signal); display: flex; align-items: center; gap: 6px;
+  flex-shrink: 0; direction: ltr;
 }
 .np-live::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--hot); box-shadow: 0 0 6px var(--hot);
+  background: var(--signal); box-shadow: 0 0 6px var(--signal-glow);
   animation: blink 1.6s ease-in-out infinite;
 }
 .np-logo {
-  width: 38px; height: 24px; border-radius: 3px;
-  object-fit: contain; background: var(--bg-2);
-  border: 1px solid var(--border); flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: var(--r-sm);
+  object-fit: contain; background: var(--panel-2);
+  border: 1px solid var(--line); flex-shrink: 0;
+  padding: 3px;
 }
 .np-info { flex: 1; min-width: 0; }
 .np-name {
   font-size: 0.87rem; font-weight: 700;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.np-group { font-size: 0.72rem; color: var(--text-3); margin-top: 1px; }
+.np-group { font-size: 0.72rem; color: var(--ink-3); margin-top: 1px; }
 .np-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
-.np-time { font-size: 0.72rem; color: var(--text-3); }
-.np-retry { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--text-3); }
+.np-time { font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink-3); direction: ltr; }
+.np-retry { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--danger); }
+.np-retry svg { width: 13px; height: 13px; }
 
 /* ═══════════════════════════════════════════════
    TOAST
@@ -519,18 +605,24 @@ body {
   pointer-events: none; align-items: center;
 }
 .toast {
-  background: var(--bg-3);
-  border: 1px solid var(--border-2);
+  display: flex; align-items: center; gap: 9px;
+  background: var(--panel-3);
+  border: 1px solid var(--line-2);
+  border-inline-start: 3px solid var(--ink-3);
   border-radius: var(--r-md);
-  padding: 9px 18px;
-  font-size: 0.81rem; color: var(--text-1);
+  padding: 9px 16px;
+  font-size: 0.81rem; color: var(--ink-1);
   box-shadow: 0 8px 36px rgba(0,0,0,.55);
   animation: t-in .22s var(--ease), t-out .22s var(--ease) 2.78s forwards;
   white-space: nowrap; max-width: 90vw;
 }
-.toast.ok  { border-color: var(--green); }
-.toast.err { border-color: var(--hot); }
-.toast.inf { border-color: var(--accent); }
+.toast-icon { width: 15px; height: 15px; flex-shrink: 0; }
+.toast.ok  { border-inline-start-color: var(--good); }
+.toast.ok  .toast-icon { color: var(--good); }
+.toast.err { border-inline-start-color: var(--danger); }
+.toast.err .toast-icon { color: var(--danger); }
+.toast.inf { border-inline-start-color: var(--cue); }
+.toast.inf .toast-icon { color: var(--cue); }
 @keyframes t-in  { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
 @keyframes t-out { to{opacity:0;transform:translateY(8px)} }
 
@@ -562,7 +654,7 @@ body {
 .page-progress {
   position: fixed; top: var(--header-h); left: 0; right: 0;
   height: 2px; z-index: 300;
-  background: var(--accent);
+  background: var(--cue);
   transform: scaleX(0); transform-origin: left;
   transition: transform .3s var(--ease), opacity .3s;
   opacity: 0;
@@ -584,14 +676,21 @@ body {
 
 <header class="header">
   <div class="logo">
-    <div class="logo-mark">📡</div>
-    <span class="logo-name">IPTV Stream</span>
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="19.4" r="1.3" fill="currentColor" stroke="none"/>
+        <path d="M8.4 15.7a5.1 5.1 0 0 1 7.2 0"/>
+        <path d="M5.3 12.6a9.3 9.3 0 0 1 13.4 0"/>
+        <path d="M2.2 9.5a13.5 13.5 0 0 1 19.6 0"/>
+      </svg>
+    </div>
+    <span class="logo-name">IPTV STREAM</span>
     <span class="logo-tag">PRO</span>
   </div>
 
   <div class="url-bar">
     <div class="url-field">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
       </svg>
@@ -600,22 +699,23 @@ body {
     </div>
 
     <button class="btn btn-primary" id="btnLoad">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-        <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.73"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/>
       </svg>
       <span class="label">تحميل</span>
     </button>
 
     <button class="btn btn-ghost btn-icon" id="btnFile" title="فتح ملف M3U محلي">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>
       </svg>
     </button>
     <input type="file" id="fileInput" accept=".m3u,.m3u8,.txt">
 
     <button class="btn btn-ghost btn-icon" id="btnSidebar" title="القنوات" style="display:none">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="3" y="3" width="8" height="8" rx="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.6"/>
+        <rect x="3" y="13" width="8" height="8" rx="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.6"/>
       </svg>
     </button>
   </div>
@@ -627,13 +727,24 @@ body {
     <div class="player-zone" id="playerZone">
 
       <div class="idle-screen" id="idleScreen">
-        <div class="idle-logo">📺</div>
+        <div class="idle-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="19.4" r="1.3" fill="currentColor" stroke="none"/>
+            <path d="M8.4 15.7a5.1 5.1 0 0 1 7.2 0"/>
+            <path d="M5.3 12.6a9.3 9.3 0 0 1 13.4 0"/>
+            <path d="M2.2 9.5a13.5 13.5 0 0 1 19.6 0"/>
+          </svg>
+        </div>
         <div class="idle-title">مشغّل IPTV الاحترافي</div>
-        <div class="idle-sub">أدخل رابط M3U أو افتح ملفاً محلياً، ثم اختر قناة من القائمة الجانبية للبدء.</div>
+        <div class="idle-sub">أدخل رابط M3U أو افتح ملفاً محلياً، ثم اختر قناة من اللوحة الجانبية للبدء.</div>
         <div class="idle-formats">HLS · M3U8 · TS · MP4</div>
       </div>
 
       <video id="vjsPlayer" class="video-js vjs-default-skin" controls preload="auto"></video>
+
+      <div class="player-tally" id="playerTally">
+        <span class="player-tally-dot"></span><span class="lbl">ON AIR</span>
+      </div>
 
       <div class="player-loading" id="playerLoading">
         <div class="spinner"></div>
@@ -641,7 +752,13 @@ body {
       </div>
 
       <div class="reconnect-overlay" id="reconnectOverlay">
-        <div class="reconnect-icon">🔄</div>
+        <div class="reconnect-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 5v5.5h-5.5"/><path d="M2.5 19v-5.5h5.5"/>
+            <path d="M4.3 9.5a8 8 0 0 1 13.6-3.9l3.6 3.9"/>
+            <path d="M19.7 14.5a8 8 0 0 1-13.6 3.9L2.5 14.5"/>
+          </svg>
+        </div>
         <div class="reconnect-title">انقطع الاتصال</div>
         <div class="reconnect-sub" id="reconnectSub">إعادة الاتصال... المحاولة 1 من 5</div>
         <div class="reconnect-progress"><div class="reconnect-bar" id="reconnectBar"></div></div>
@@ -650,20 +767,29 @@ body {
 
       <div class="custom-controls" id="customControls">
         <button class="ctrl-btn" id="btnAR" title="نسبة العرض إلى الارتفاع">16:9</button>
-        <button class="ctrl-btn" id="btnFS" title="ملء الشاشة">⛶</button>
+        <button class="ctrl-btn" id="btnFS" title="ملء الشاشة">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3.5H5.5a2 2 0 0 0-2 2V8"/><path d="M20.5 8V5.5a2 2 0 0 0-2-2H16"/>
+            <path d="M3.5 16v2.5a2 2 0 0 0 2 2H8"/><path d="M16 20.5h2.5a2 2 0 0 0 2-2V16"/>
+          </svg>
+        </button>
       </div>
     </div>
 
     <div class="np-bar" id="npBar">
-      <div class="np-live">LIVE</div>
-      <img class="np-logo" id="npLogo" src="" alt="" onerror="this.style.display='none'">
+      <div class="np-live">ON AIR</div>
+      <img class="np-logo" id="npLogo" src="" alt="">
       <div class="np-info">
         <div class="np-name" id="npName">—</div>
         <div class="np-group" id="npGroup"></div>
       </div>
       <div class="np-right">
         <div class="np-retry" id="npRetry" style="display:none">
-          <span>⚠️</span><span id="npRetryText"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.6 3.9 2.4 18.5a1.4 1.4 0 0 0 1.2 2.1h16.8a1.4 1.4 0 0 0 1.2-2.1L13.4 3.9a1.6 1.6 0 0 0-2.8 0Z"/>
+            <path d="M12 9.5v4"/><circle cx="12" cy="16.7" r=".15" fill="currentColor"/>
+          </svg>
+          <span id="npRetryText"></span>
         </div>
         <div class="np-time" id="npTime"></div>
       </div>
@@ -676,20 +802,27 @@ body {
     <div class="sb-top">
       <div class="view-tabs">
         <button class="view-tab active" id="tabAll" data-tab="all">
-          📋 <span>الكل</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="8" height="8" rx="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.6"/>
+            <rect x="3" y="13" width="8" height="8" rx="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.6"/>
+          </svg>
+          <span>الكل</span>
         </button>
         <button class="view-tab" id="tabFav" data-tab="fav">
-          ⭐ <span>المفضلة</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+            <path d="M12 3.2 14.6 9 21 9.8 16.3 14.1 17.6 20.4 12 17.1 6.4 20.4 7.7 14.1 3 9.8 9.4 9Z"/>
+          </svg>
+          <span>المفضلة</span>
         </button>
       </div>
       <div class="search-wrap">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
         <input class="search-input" id="searchInput" type="text" placeholder="بحث سريع عن قناة...">
       </div>
       <div class="group-select-wrap" id="groupWrap" style="display:none">
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
         <select class="group-select" id="groupSelect">
@@ -706,6 +839,16 @@ body {
     <div class="vlist-wrap" id="vlistWrap">
       <div class="vlist-spacer" id="vlistSpacer">
         <div class="vlist-content" id="vlistContent"></div>
+      </div>
+      <div class="grid-state" id="gridState" style="display:none">
+        <svg class="state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="19.4" r="1.3" fill="currentColor" stroke="none"/>
+          <path d="M8.4 15.7a5.1 5.1 0 0 1 7.2 0"/>
+          <path d="M5.3 12.6a9.3 9.3 0 0 1 13.4 0"/>
+          <path d="M2.2 9.5a13.5 13.5 0 0 1 19.6 0"/>
+        </svg>
+        <div class="state-title" id="gridStateTitle">لا توجد قنوات</div>
+        <div class="state-sub" id="gridStateSub">أدخل رابط M3U من الأعلى لعرض القنوات هنا.</div>
       </div>
     </div>
 
@@ -764,6 +907,15 @@ self.onmessage = function(e) {
 <script>
 'use strict';
 
+/* ─── Icon library (used for dynamically built nodes) ─── */
+const ICONS = {
+  star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.2 14.6 9 21 9.8 16.3 14.1 17.6 20.4 12 17.1 6.4 20.4 7.7 14.1 3 9.8 9.4 9Z"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+  alert: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 3.9 2.4 18.5a1.4 1.4 0 0 0 1.2 2.1h16.8a1.4 1.4 0 0 0 1.2-2.1L13.4 3.9a1.6 1.6 0 0 0-2.8 0Z"/><path d="M12 9.5v4"/><circle cx="12" cy="16.7" r=".15" fill="currentColor"/></svg>',
+  info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.6" r=".15" fill="currentColor"/></svg>',
+  signal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="19.4" r="1.3" fill="currentColor" stroke="none"/><path d="M8.4 15.7a5.1 5.1 0 0 1 7.2 0"/><path d="M5.3 12.6a9.3 9.3 0 0 1 13.4 0"/><path d="M2.2 9.5a13.5 13.5 0 0 1 19.6 0"/></svg>',
+};
+
 /* ─── Constants ─── */
 const LS = {
   URL:   'iptv_url',
@@ -771,9 +923,10 @@ const LS = {
   LAST:  'iptv_last_ch',
   SBAR:  'iptv_sidebar_w',
 };
-const ITEM_H        = 46;   // px, height of each channel row
-const RECONNECT_MAX = 5;
-const RECONNECT_INT = 3000; // ms
+const GAP            = 10;   // px, gap between tiles
+const MIN_TILE        = 118; // px, minimum tile width before adding/removing a column
+const RECONNECT_MAX  = 5;
+const RECONNECT_INT  = 3000; // ms
 
 /* ─── State ─── */
 let allChannels    = [];
@@ -795,6 +948,11 @@ let debounceTimer  = null;
 let scrollRAF      = null;
 let isStreamLoaded = false; // فحص ما إذا كان البث قد بدأ تشغيله بالفعل لتجنب ظهور نافذة الانتظار
 
+/* grid geometry, recomputed on resize */
+let cols  = 2;
+let tileW = 140;
+let rowH  = 150;
+
 /* ─── DOM refs ─── */
 const $ = id => document.getElementById(id);
 const urlInput      = $('urlInput');
@@ -809,6 +967,9 @@ const groupWrap     = $('groupWrap');
 const vlistWrap     = $('vlistWrap');
 const vlistSpacer   = $('vlistSpacer');
 const vlistContent  = $('vlistContent');
+const gridState     = $('gridState');
+const gridStateTitle= $('gridStateTitle');
+const gridStateSub  = $('gridStateSub');
 const sbMetaText    = $('sbMetaText');
 const sbMetaCount   = $('sbMetaCount');
 const tabAll        = $('tabAll');
@@ -817,6 +978,7 @@ const idleScreen    = $('idleScreen');
 const vjsEl         = $('vjsPlayer');
 const playerLoading = $('playerLoading');
 const playerLoadTxt = $('playerLoadingText');
+const playerTally   = $('playerTally');
 const reconnectOv   = $('reconnectOverlay');
 const reconnectSub  = $('reconnectSub');
 const reconnectBar  = $('reconnectBar');
@@ -834,13 +996,16 @@ const btnFS         = $('btnFS');
 const pageProgress  = $('pageProgress');
 const toaster       = $('toaster');
 
+npLogo.addEventListener('error', () => { npLogo.style.display = 'none'; });
+
 /* ═══════════════════════════════════════════════
    TOAST
 ═══════════════════════════════════════════════ */
 function toast(msg, type = 'inf', dur = 3000) {
   const el = document.createElement('div');
   el.className = `toast ${type}`;
-  el.textContent = msg;
+  const icon = type === 'ok' ? ICONS.check : type === 'err' ? ICONS.alert : ICONS.info;
+  el.innerHTML = `<span class="toast-icon">${icon}</span><span>${esc(msg)}</span>`;
   toaster.appendChild(el);
   setTimeout(() => el.remove(), dur + 300);
 }
@@ -925,12 +1090,13 @@ async function loadFromText(text, label = '') {
     const channels = await parseWithWorker(text);
     if (!channels.length) throw new Error('لم يُعثر على قنوات في الملف');
 
+    channels.forEach((c, i) => c.__idx = i);
     allChannels = channels;
     buildGroups();
     rebuildDisplay();
     hidePlayerLoading();
     progressDone();
-    toast(`✅ تم تحميل ${channels.length.toLocaleString('ar')} قناة`, 'ok');
+    toast(`تم تحميل ${channels.length.toLocaleString('en-US')} قناة`, 'ok');
 
     // Restore last channel
     const lastUrl = lsGet(LS.LAST);
@@ -941,7 +1107,7 @@ async function loadFromText(text, label = '') {
   } catch (err) {
     hidePlayerLoading();
     progressDone();
-    toast(`❌ ${err.message}`, 'err', 5000);
+    toast(err.message, 'err', 5000);
   }
 }
 
@@ -963,7 +1129,7 @@ async function loadFromURL() {
     btnLoad.disabled = false;
     hidePlayerLoading();
     progressDone();
-    toast(`❌ ${err.message}`, 'err', 5000);
+    toast(err.message, 'err', 5000);
   }
 }
 
@@ -971,7 +1137,7 @@ function loadFromFile(file) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = e => loadFromText(e.target.result, file.name);
-  reader.onerror = () => toast('❌ تعذّر قراءة الملف', 'err');
+  reader.onerror = () => toast('تعذّر قراءة الملف', 'err');
   reader.readAsText(file, 'UTF-8');
 }
 
@@ -988,13 +1154,37 @@ function buildGroups() {
 }
 
 /* ═══════════════════════════════════════════════
-   DISPLAY LIST + VIRTUAL SCROLL
+   GRID GEOMETRY
+═══════════════════════════════════════════════ */
+function computeGrid() {
+  const w = vlistSpacer.clientWidth || vlistWrap.clientWidth - 20;
+  cols  = Math.max(2, Math.floor((w + GAP) / (MIN_TILE + GAP)));
+  tileW = Math.floor((w - GAP * (cols - 1)) / cols);
+  rowH  = tileW + GAP;
+  vlistContent.style.gridTemplateColumns = `repeat(${cols}, ${tileW}px)`;
+  vlistContent.style.gap = GAP + 'px';
+}
+
+function chNum(n, total) {
+  const width = Math.max(2, String(total).length);
+  return String(n).padStart(width, '0');
+}
+
+function firstChar(name) {
+  const t = (name || '').trim();
+  return t ? t.charAt(0).toUpperCase() : '#';
+}
+
+/* ═══════════════════════════════════════════════
+   DISPLAY LIST + VIRTUAL GRID SCROLL
 ═══════════════════════════════════════════════ */
 function rebuildDisplay() {
+  computeGrid();
+
   const q = searchQ.toLowerCase();
   const isFav = activeTab === 'fav';
 
-  displayList = allChannels.filter((c, i) => {
+  displayList = allChannels.filter(c => {
     if (isFav && !favorites.has(c.url)) return false;
     if (activeGroup && c.group !== activeGroup) return false;
     if (q && !c.name.toLowerCase().includes(q) && !c.group.toLowerCase().includes(q)) return false;
@@ -1002,69 +1192,107 @@ function rebuildDisplay() {
   });
 
   const n = displayList.length;
-  vlistSpacer.style.height = (n * ITEM_H) + 'px';
-  sbMetaCount.textContent  = n.toLocaleString('ar');
-  sbMetaText.textContent   = isFav ? 'المفضلة' : activeGroup || 'جميع القنوات';
+  const totalRows = Math.max(1, Math.ceil(n / cols));
+  vlistSpacer.style.height = (totalRows * rowH) + 'px';
+  sbMetaCount.textContent  = String(n);
+  sbMetaText.textContent   = isFav ? 'المفضلة' : (activeGroup || 'جميع القنوات');
 
+  toggleGridState(n === 0, isFav);
+
+  lastScrollTop = -1;
   renderVisible();
+}
+
+function toggleGridState(empty, isFav) {
+  gridState.style.display = empty ? 'flex' : 'none';
+  if (!empty) return;
+  if (allChannels.length === 0) {
+    gridStateTitle.textContent = 'لا توجد قنوات';
+    gridStateSub.textContent   = 'أدخل رابط M3U من الأعلى لعرض القنوات هنا.';
+  } else if (isFav) {
+    gridStateTitle.textContent = 'لا قنوات مفضّلة';
+    gridStateSub.textContent   = 'اضغط على أيقونة النجمة في أي قناة لإضافتها هنا.';
+  } else {
+    gridStateTitle.textContent = 'لا نتائج مطابقة';
+    gridStateSub.textContent   = 'جرّب كلمة بحث مختلفة أو غيّر المجموعة المحددة.';
+  }
 }
 
 let lastScrollTop = -1;
 function renderVisible() {
-  const wrap    = vlistWrap;
-  const st      = wrap.scrollTop;
+  const st    = vlistWrap.scrollTop;
   if (Math.abs(st - lastScrollTop) < 2 && lastScrollTop !== -1) return;
   lastScrollTop = st;
 
-  const viewH   = wrap.clientHeight;
-  const total   = displayList.length;
-  const start   = Math.max(0, Math.floor(st / ITEM_H) - 4);
-  const end     = Math.min(total - 1, Math.ceil((st + viewH) / ITEM_H) + 4);
+  const viewH     = vlistWrap.clientHeight;
+  const total     = displayList.length;
+  const totalRows = Math.max(1, Math.ceil(total / cols));
+  const startRow  = Math.max(0, Math.floor(st / rowH) - 2);
+  const endRow    = Math.min(totalRows - 1, Math.ceil((st + viewH) / rowH) + 2);
 
-  vlistContent.style.top = (start * ITEM_H) + 'px';
+  vlistContent.style.top = (startRow * rowH) + 'px';
 
   const frag = document.createDocumentFragment();
-  for (let i = start; i <= end; i++) {
-    const ch  = displayList[i];
-    const idx = allChannels.indexOf(ch);
-    frag.appendChild(buildChItem(ch, idx));
+  for (let r = startRow; r <= endRow; r++) {
+    for (let c = 0; c < cols; c++) {
+      const pos = r * cols + c;
+      if (pos >= total) continue;
+      const ch = displayList[pos];
+      frag.appendChild(buildTile(ch, ch.__idx, pos));
+    }
   }
   vlistContent.innerHTML = '';
   vlistContent.appendChild(frag);
 }
 
-function buildChItem(ch, globalIdx) {
+function buildTile(ch, idx, pos) {
   const div = document.createElement('div');
-  div.className = `ch-item${globalIdx === activeIdx ? ' active' : ''}`;
-  div.dataset.idx = globalIdx;
-  div.style.height = ITEM_H + 'px';
+  div.className = 'tile' + (idx === activeIdx ? ' active' : '');
+  div.dataset.idx = idx;
+  div.tabIndex = 0;
+  div.setAttribute('role', 'button');
+  div.setAttribute('aria-label', ch.name);
 
   const isFav = favorites.has(ch.url);
-  const logo  = ch.logo
-    ? `<img class="ch-logo" src="${esc(ch.logo)}" alt="" loading="lazy"
-           onerror="this.outerHTML='<div class=ch-logo-ph>📺</div>'">`
-    : `<div class="ch-logo-ph">📺</div>`;
+  const num = chNum(pos + 1, displayList.length);
 
   div.innerHTML = `
-    ${logo}
-    <div class="ch-info">
-      <div class="ch-name">${esc(ch.name)}</div>
-      <div class="ch-group">${esc(ch.group)}</div>
+    <div class="tile-tally"></div>
+    <div class="tile-media">
+      ${ch.logo
+        ? `<img class="tile-logo" data-fallback="${esc(ch.name)}" src="${esc(ch.logo)}" alt="" loading="lazy">`
+        : `<div class="tile-mono">${esc(firstChar(ch.name))}</div>`}
     </div>
-    <div class="ch-actions">
-      <button class="ch-fav-btn${isFav ? ' faved' : ''}" data-url="${esc(ch.url)}" title="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">
-        ${isFav ? '⭐' : '☆'}
-      </button>
-      ${globalIdx === activeIdx ? '<div class="ch-live-dot"></div>' : ''}
+    <div class="tile-badge-num">${num}</div>
+    <button class="tile-fav${isFav ? ' faved' : ''}" data-url="${esc(ch.url)}" aria-label="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">${ICONS.star}</button>
+    <div class="tile-label">
+      <div class="tile-name">${esc(ch.name)}</div>
+      <div class="tile-group">${esc(ch.group)}</div>
     </div>`;
 
+  const img = div.querySelector('.tile-logo');
+  if (img) {
+    img.addEventListener('error', () => {
+      const mono = document.createElement('div');
+      mono.className = 'tile-mono';
+      mono.textContent = firstChar(img.dataset.fallback);
+      img.replaceWith(mono);
+    }, { once: true });
+  }
+
   div.addEventListener('click', e => {
-    if (e.target.closest('.ch-fav-btn')) return;
-    playChannel(globalIdx);
+    if (e.target.closest('.tile-fav')) return;
+    playChannel(idx);
     if (window.innerWidth <= 680) sidebar.classList.remove('open');
   });
+  div.addEventListener('keydown', e => {
+    if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('.tile-fav')) {
+      e.preventDefault();
+      playChannel(idx);
+    }
+  });
 
-  div.querySelector('.ch-fav-btn').addEventListener('click', e => {
+  div.querySelector('.tile-fav').addEventListener('click', e => {
     e.stopPropagation();
     toggleFav(ch.url, e.currentTarget);
   });
@@ -1076,13 +1304,11 @@ function toggleFav(url, btn) {
   if (favorites.has(url)) {
     favorites.delete(url);
     btn.classList.remove('faved');
-    btn.textContent = '☆';
-    btn.title = 'إضافة للمفضلة';
+    btn.setAttribute('aria-label', 'إضافة للمفضلة');
   } else {
     favorites.add(url);
     btn.classList.add('faved');
-    btn.textContent = '⭐';
-    btn.title = 'إزالة من المفضلة';
+    btn.setAttribute('aria-label', 'إزالة من المفضلة');
   }
   saveFavs();
   if (activeTab === 'fav') rebuildDisplay();
@@ -1180,10 +1406,11 @@ function playChannel(idx) {
 
   // Update Now Playing bar
   npBar.classList.add('show');
+  playerTally.classList.add('show');
   npName.textContent  = ch.name;
   npGroup.textContent = ch.group;
-  npLogo.src = ch.logo || '';
   npLogo.style.display = ch.logo ? '' : 'none';
+  npLogo.src = ch.logo || '';
 
   if (timeTimer) clearInterval(timeTimer);
   updateTime(); timeTimer = setInterval(updateTime, 1000);
@@ -1192,7 +1419,7 @@ function playChannel(idx) {
 }
 
 function updateTime() {
-  npTime.textContent = new Date().toLocaleTimeString('ar-SA', {
+  npTime.textContent = new Date().toLocaleTimeString('en-GB', {
     hour: '2-digit', minute: '2-digit', second: '2-digit'
   });
 }
@@ -1203,7 +1430,7 @@ function updateTime() {
 function onStreamError() {
   if (reconnectCount >= RECONNECT_MAX) {
     cancelReconnect();
-    toast('❌ فشل الاتصال بعد ' + RECONNECT_MAX + ' محاولات — تأكد من الرابط', 'err', 6000);
+    toast('فشل الاتصال بعد ' + RECONNECT_MAX + ' محاولات — تأكد من الرابط', 'err', 6000);
     npRetry.style.display = 'flex';
     npRetryText.textContent = 'فشل الاتصال';
     return;
@@ -1305,6 +1532,20 @@ vlistWrap.addEventListener('scroll', () => {
 });
 
 /* ═══════════════════════════════════════════════
+   GRID RESPONSIVENESS (sidebar resize, window resize, mobile toggle)
+═══════════════════════════════════════════════ */
+let gridRAF = null;
+function scheduleGridUpdate() {
+  if (gridRAF) cancelAnimationFrame(gridRAF);
+  gridRAF = requestAnimationFrame(rebuildDisplay);
+}
+if (window.ResizeObserver) {
+  const ro = new ResizeObserver(() => scheduleGridUpdate());
+  ro.observe(vlistWrap);
+}
+window.addEventListener('resize', scheduleGridUpdate);
+
+/* ═══════════════════════════════════════════════
    SIDEBAR RESIZE
 ═══════════════════════════════════════════════ */
 (function setupResize() {
@@ -1320,10 +1561,10 @@ vlistWrap.addEventListener('scroll', () => {
   document.addEventListener('mousemove', e => {
     if (!dragging) return;
     const delta = startX - e.clientX;
-    const w = Math.min(460, Math.max(220, startW + delta));
+    const w = Math.min(440, Math.max(240, startW + delta));
     sidebar.style.width = w + 'px';
     lsSet(LS.SBAR, w);
-    renderVisible();
+    scheduleGridUpdate();
   });
   document.addEventListener('mouseup', () => {
     if (!dragging) return;
@@ -1341,7 +1582,10 @@ vlistWrap.addEventListener('scroll', () => {
 /* ═══════════════════════════════════════════════
    MOBILE SIDEBAR
 ═══════════════════════════════════════════════ */
-btnSidebar.addEventListener('click', () => sidebar.classList.toggle('open'));
+btnSidebar.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  scheduleGridUpdate();
+});
 
 /* ═══════════════════════════════════════════════
    LOAD BUTTON / FILE INPUT
@@ -1384,10 +1628,12 @@ function esc(s) {
 ═══════════════════════════════════════════════ */
 (function init() {
   loadFavs();
+  computeGrid();
+  toggleGridState(true, false);
   const savedUrl = lsGet(LS.URL);
   if (savedUrl) {
     urlInput.value = savedUrl;
-    toast('⚡ جارٍ استعادة آخر جلسة...', 'inf', 2000);
+    toast('جارٍ استعادة آخر جلسة...', 'inf', 2000);
     setTimeout(loadFromURL, 600);
   }
 })();
